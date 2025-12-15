@@ -1,0 +1,26 @@
+{
+    "name": "jonesycode-dev",
+    "version": "1.0.0",
+    "description": "Interactive TypeScript and Angular learning walkthroughs - Jonesys Code Dev",
+    "scripts": {
+        "install:all": "npm install && cd typescript && npm install && cd ../angular && npm install",
+        "build": "npm run build:typescript && npm run build:angular",
+        "build:typescript": "cd typescript && npm run build",
+        "build:angular": "cd angular && npm run build",
+        "serve:typescript": "cd typescript && npx http-server . -p 8080 -o",
+        "serve:angular": "cd angular && npx http-server . -p 8081 -o",
+        "serve": "concurrently \"npm run serve:typescript\" \"npm run serve:angular\"",
+        "dev": "concurrently \"cd typescript && tsc --watch\" \"cd angular && tsc --watch\" \"npm run serve\""
+    },
+    "keywords": [
+        "typescript",
+        "angular",
+        "learning",
+        "tutorial"
+    ],
+    "author": "Jonesys Code Dev",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.0"
+    }
+}
