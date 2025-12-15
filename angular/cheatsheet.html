@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Cheat Sheet - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cheatsheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">Jonesys<span class="brand-accent">Code Dev</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to Angular Course</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="cheatsheet-hero">
+            <div class="hero-badge">Quick Reference Guide</div>
+            <h1>🅰️ Angular <span class="highlight">Cheat Sheet</span></h1>
+            <p class="hero-subtitle">Your go-to reference for Angular decorators, directives, services, and patterns.
+                Bookmark this page!</p>
+        </header>
+
+        <!-- Quick Navigation -->
+        <nav class="quick-nav">
+            <a href="#cli-commands">CLI Commands</a>
+            <a href="#components">Components</a>
+            <a href="#templates">Templates</a>
+            <a href="#directives">Directives</a>
+            <a href="#data-binding">Data Binding</a>
+            <a href="#services">Services</a>
+            <a href="#lifecycle">Lifecycle Hooks</a>
+            <a href="#routing">Routing</a>
+            <a href="#forms">Forms</a>
+            <a href="#pipes">Pipes</a>
+        </nav>
+
+        <!-- Cheat Sheet Sections -->
+        <main class="cheatsheet-content">
+
+            <!-- CLI Commands -->
+            <section class="cheat-section" id="cli-commands">
+                <h2>⌨️ Angular CLI Commands</h2>
+                <p class="section-desc">Essential commands for creating and managing Angular projects.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Project Setup</h3>
+                        <pre><code># Install Angular CLI globally
+npm install -g @angular/cli
+
+# Create new project
+ng new my-app
+
+# Create with options
+ng new my-app --routing --style=scss
+
+# Serve development server
+ng serve
+ng serve --open  # Opens browser automatically
+
+# Build for production
+ng build --configuration production</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Generate Components</h3>
+                        <pre><code># Generate component
+ng generate component my-component
+ng g c my-component  # Shorthand
+
+# In specific folder
+ng g c features/dashboard
+
+# With options
+ng g c header --skip-tests
+ng g c card --inline-style
+ng g c nav --inline-template</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Generate Other</h3>
+                        <pre><code># Service
+ng g service services/user
+
+# Module
+ng g module features/admin --routing
+
+# Directive
+ng g directive directives/highlight
+
+# Pipe
+ng g pipe pipes/format-date
+
+# Guard
+ng g guard guards/auth</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Components -->
+            <section class="cheat-section" id="components">
+                <h2>🧱 Components</h2>
+                <p class="section-desc">The building blocks of Angular applications.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Basic Component Structure</h3>
+                        <pre><code>import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-hello',           // HTML tag to use
+    templateUrl: './hello.component.html',  // External template
+    styleUrls: ['./hello.component.css']    // External styles
+})
+export class HelloComponent {
+    // Properties (data)
+    title: string = 'Hello Angular!';
+    count: number = 0;
+    
+    // Methods (behavior)
+    increment(): void {
+        this.count++;
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Inline Template & Styles</h3>
+                        <pre><code>@Component({
+    selector: 'app-inline',
+    template: `
+        &lt;h1&gt;{{ title }}&lt;/h1&gt;
+        &lt;p&gt;Count: {{ count }}&lt;/p&gt;
+    `,
+    styles: [`
+        h1 { color: blue; }
+        p { font-size: 18px; }
+    `]
+})
+export class InlineComponent {
+    title = 'Inline Example';
+    count = 0;
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Standalone Components (Angular 14+)</h3>
+                        <pre><code>import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+    selector: 'app-standalone',
+    standalone: true,
+    imports: [CommonModule],
+    template: `
+        &lt;p *ngIf="visible"&gt;Hello!&lt;/p&gt;
+    `
+})
+export class StandaloneComponent {
+    visible = true;
+}</code></pre>
+                        <p class="card-note">Standalone components don't need NgModule declarations.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Input & Output</h3>
+                        <pre><code>import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+    selector: 'app-child',
+    template: `
+        &lt;h2&gt;{{ title }}&lt;/h2&gt;
+        &lt;button (click)="sendMessage()"&gt;Send&lt;/button&gt;
+    `
+})
+export class ChildComponent {
+    // Receive data from parent
+    @Input() title: string = '';
+    
+    // Send data to parent
+    @Output() message = new EventEmitter&lt;string&gt;();
+    
+    sendMessage(): void {
+        this.message.emit('Hello from child!');
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Templates -->
+            <section class="cheat-section" id="templates">
+                <h2>📄 Templates</h2>
+                <p class="section-desc">Angular template syntax for dynamic HTML.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Interpolation</h3>
+                        <pre><code>&lt;!-- Display property value --&gt;
+&lt;h1&gt;{{ title }}&lt;/h1&gt;
+
+&lt;!-- Expressions --&gt;
+&lt;p&gt;Sum: {{ 1 + 1 }}&lt;/p&gt;
+&lt;p&gt;{{ user.name.toUpperCase() }}&lt;/p&gt;
+
+&lt;!-- Method calls --&gt;
+&lt;p&gt;{{ getFullName() }}&lt;/p&gt;</code></pre>
+                        <p class="card-note">Use {{ }} to display dynamic values in templates.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Template Reference Variables</h3>
+                        <pre><code>&lt;!-- Reference to element --&gt;
+&lt;input #nameInput type="text"&gt;
+&lt;button (click)="greet(nameInput.value)"&gt;
+    Greet
+&lt;/button&gt;
+
+&lt;!-- Reference to component --&gt;
+&lt;app-timer #timer&gt;&lt;/app-timer&gt;
+&lt;button (click)="timer.start()"&gt;Start&lt;/button&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Safe Navigation Operator</h3>
+                        <pre><code>&lt;!-- Prevents errors if null/undefined --&gt;
+&lt;p&gt;{{ user?.name }}&lt;/p&gt;
+&lt;p&gt;{{ user?.address?.city }}&lt;/p&gt;
+
+&lt;!-- Without safe navigation (may error) --&gt;
+&lt;p&gt;{{ user.name }}&lt;/p&gt; &lt;!-- ❌ Error if user is null --&gt;</code></pre>
+                        <p class="card-note">Use ?. to safely access properties that might be null.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Non-null Assertion</h3>
+                        <pre><code>&lt;!-- Tell Angular value is not null --&gt;
+&lt;p&gt;{{ user!.name }}&lt;/p&gt;
+
+&lt;!-- Useful with strict null checks --&gt;
+&lt;span&gt;{{ data!.length }}&lt;/span&gt;</code></pre>
+                        <p class="card-note warning">⚠️ Use only when you're certain the value exists.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Directives -->
+            <section class="cheat-section" id="directives">
+                <h2>🔧 Directives</h2>
+                <p class="section-desc">Built-in directives for controlling DOM elements.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>*ngIf - Conditional</h3>
+                        <pre><code>&lt;!-- Show/hide based on condition --&gt;
+&lt;div *ngIf="isLoggedIn"&gt;
+    Welcome back!
+&lt;/div&gt;
+
+&lt;!-- With else --&gt;
+&lt;div *ngIf="isLoggedIn; else loginPrompt"&gt;
+    Dashboard
+&lt;/div&gt;
+&lt;ng-template #loginPrompt&gt;
+    Please log in
+&lt;/ng-template&gt;
+
+&lt;!-- With then/else --&gt;
+&lt;div *ngIf="loading; then spinner else content"&gt;&lt;/div&gt;
+&lt;ng-template #spinner&gt;Loading...&lt;/ng-template&gt;
+&lt;ng-template #content&gt;Data loaded!&lt;/ng-template&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>*ngFor - Loop</h3>
+                        <pre><code>&lt;!-- Basic loop --&gt;
+&lt;ul&gt;
+    &lt;li *ngFor="let item of items"&gt;
+        {{ item }}
+    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- With index --&gt;
+&lt;li *ngFor="let item of items; let i = index"&gt;
+    {{ i }}: {{ item }}
+&lt;/li&gt;
+
+&lt;!-- With trackBy for performance --&gt;
+&lt;li *ngFor="let user of users; trackBy: trackByUserId"&gt;
+    {{ user.name }}
+&lt;/li&gt;
+
+// In component:
+trackByUserId(index: number, user: User): number {
+    return user.id;
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>*ngSwitch - Multiple Conditions</h3>
+                        <pre><code>&lt;div [ngSwitch]="status"&gt;
+    &lt;p *ngSwitchCase="'loading'"&gt;
+        Loading...
+    &lt;/p&gt;
+    &lt;p *ngSwitchCase="'success'"&gt;
+        Data loaded!
+    &lt;/p&gt;
+    &lt;p *ngSwitchCase="'error'"&gt;
+        Error occurred
+    &lt;/p&gt;
+    &lt;p *ngSwitchDefault&gt;
+        Unknown status
+    &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>ngClass & ngStyle</h3>
+                        <pre><code>&lt;!-- Dynamic classes --&gt;
+&lt;div [ngClass]="{'active': isActive, 'disabled': isDisabled}"&gt;
+&lt;/div&gt;
+
+&lt;!-- Array of classes --&gt;
+&lt;div [ngClass]="['btn', 'btn-primary']"&gt;&lt;/div&gt;
+
+&lt;!-- Dynamic styles --&gt;
+&lt;div [ngStyle]="{
+    'color': textColor,
+    'font-size.px': fontSize
+}"&gt;
+    Styled text
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>@if / @for (Angular 17+)</h3>
+                        <pre><code>&lt;!-- New control flow syntax --&gt;
+
+@if (isLoggedIn) {
+    &lt;p&gt;Welcome!&lt;/p&gt;
+} @else {
+    &lt;p&gt;Please log in&lt;/p&gt;
+}
+
+@for (item of items; track item.id) {
+    &lt;li&gt;{{ item.name }}&lt;/li&gt;
+} @empty {
+    &lt;li&gt;No items found&lt;/li&gt;
+}
+
+@switch (status) {
+    @case ('loading') { &lt;spinner /&gt; }
+    @case ('error') { &lt;error /&gt; }
+    @default { &lt;content /&gt; }
+}</code></pre>
+                        <p class="card-note">New built-in control flow available in Angular 17+</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Binding -->
+            <section class="cheat-section" id="data-binding">
+                <h2>🔗 Data Binding</h2>
+                <p class="section-desc">Connecting component data to templates.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Binding Overview</h3>
+                        <pre><code>&lt;!-- Interpolation: Component → Template --&gt;
+&lt;h1&gt;{{ title }}&lt;/h1&gt;
+
+&lt;!-- Property Binding: Component → Template --&gt;
+&lt;img [src]="imageUrl"&gt;
+&lt;button [disabled]="isDisabled"&gt;Click&lt;/button&gt;
+
+&lt;!-- Event Binding: Template → Component --&gt;
+&lt;button (click)="handleClick()"&gt;Click&lt;/button&gt;
+&lt;input (input)="onInput($event)"&gt;
+
+&lt;!-- Two-way Binding: Component ↔ Template --&gt;
+&lt;input [(ngModel)]="username"&gt;
+
+&lt;!-- Attribute Binding --&gt;
+&lt;td [attr.colspan]="colSpan"&gt;Cell&lt;/td&gt;
+
+&lt;!-- Class Binding --&gt;
+&lt;div [class.active]="isActive"&gt;&lt;/div&gt;
+
+&lt;!-- Style Binding --&gt;
+&lt;div [style.color]="textColor"&gt;&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Event Binding Details</h3>
+                        <pre><code>&lt;!-- Click event --&gt;
+&lt;button (click)="onClick()"&gt;Click&lt;/button&gt;
+
+&lt;!-- With $event --&gt;
+&lt;input (input)="onInput($event)"&gt;
+
+&lt;!-- Keyboard events --&gt;
+&lt;input (keyup.enter)="onEnter()"&gt;
+&lt;input (keydown.escape)="onEscape()"&gt;
+
+&lt;!-- Mouse events --&gt;
+&lt;div (mouseenter)="onHover()"&gt;
+&lt;div (mouseleave)="onLeave()"&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Two-way Binding</h3>
+                        <pre><code>&lt;!-- Requires FormsModule --&gt;
+import { FormsModule } from '@angular/forms';
+
+&lt;!-- In template --&gt;
+&lt;input [(ngModel)]="name"&gt;
+&lt;p&gt;Hello, {{ name }}!&lt;/p&gt;
+
+&lt;!-- Expanded syntax (banana in a box) --&gt;
+&lt;input 
+    [ngModel]="name" 
+    (ngModelChange)="name = $event"&gt;</code></pre>
+                        <p class="card-note">[()] is called "banana in a box" syntax!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services -->
+            <section class="cheat-section" id="services">
+                <h2>⚙️ Services & Dependency Injection</h2>
+                <p class="section-desc">Sharing logic and data across components.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Creating a Service</h3>
+                        <pre><code>import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'  // Available app-wide
+})
+export class UserService {
+    private users: User[] = [];
+    
+    getUsers(): User[] {
+        return this.users;
+    }
+    
+    addUser(user: User): void {
+        this.users.push(user);
+    }
+    
+    getUserById(id: number): User | undefined {
+        return this.users.find(u => u.id === id);
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Injecting a Service</h3>
+                        <pre><code>import { Component } from '@angular/core';
+import { UserService } from './user.service';
+
+@Component({
+    selector: 'app-user-list',
+    template: `
+        &lt;ul&gt;
+            &lt;li *ngFor="let user of users"&gt;
+                {{ user.name }}
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    `
+})
+export class UserListComponent {
+    users: User[];
+    
+    // Inject via constructor
+    constructor(private userService: UserService) {
+        this.users = this.userService.getUsers();
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>inject() Function (Angular 14+)</h3>
+                        <pre><code>import { Component, inject } from '@angular/core';
+import { UserService } from './user.service';
+
+@Component({...})
+export class UserListComponent {
+    // Inject using inject() function
+    private userService = inject(UserService);
+    
+    users = this.userService.getUsers();
+}</code></pre>
+                        <p class="card-note">Modern alternative to constructor injection.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>HTTP Service</h3>
+                        <pre><code>import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class ApiService {
+    private baseUrl = 'https://api.example.com';
+    
+    constructor(private http: HttpClient) {}
+    
+    getUsers(): Observable&lt;User[]&gt; {
+        return this.http.get&lt;User[]&gt;(`${this.baseUrl}/users`);
+    }
+    
+    createUser(user: User): Observable&lt;User&gt; {
+        return this.http.post&lt;User&gt;(`${this.baseUrl}/users`, user);
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lifecycle Hooks -->
+            <section class="cheat-section" id="lifecycle">
+                <h2>🔄 Lifecycle Hooks</h2>
+                <p class="section-desc">React to component lifecycle events.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>All Lifecycle Hooks</h3>
+                        <pre><code>import { 
+    Component, OnInit, OnDestroy, OnChanges, 
+    AfterViewInit, SimpleChanges 
+} from '@angular/core';
+
+@Component({...})
+export class LifecycleComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+    
+    // Called once when @Input properties change (before ngOnInit)
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log('Input changed:', changes);
+    }
+    
+    // Called once after first ngOnChanges (component initialized)
+    ngOnInit(): void {
+        console.log('Component initialized');
+        // Good for: fetching data, setting up subscriptions
+    }
+    
+    // Called after view (and child views) initialized
+    ngAfterViewInit(): void {
+        console.log('View initialized');
+        // Good for: accessing @ViewChild elements
+    }
+    
+    // Called when component is destroyed
+    ngOnDestroy(): void {
+        console.log('Component destroyed');
+        // Good for: cleanup, unsubscribing
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Common Usage Pattern</h3>
+                        <pre><code>import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+@Component({...})
+export class DataComponent implements OnInit, OnDestroy {
+    private subscription?: Subscription;
+    data: any[] = [];
+    
+    constructor(private dataService: DataService) {}
+    
+    ngOnInit(): void {
+        // Subscribe to data
+        this.subscription = this.dataService
+            .getData()
+            .subscribe(data => this.data = data);
+    }
+    
+    ngOnDestroy(): void {
+        // Prevent memory leaks
+        this.subscription?.unsubscribe();
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Lifecycle Order</h3>
+                        <pre><code>// Order of lifecycle hook execution:
+
+1. constructor()      // DI happens here
+2. ngOnChanges()      // Input bindings change
+3. ngOnInit()         // Component initialized
+4. ngDoCheck()        // Change detection runs
+5. ngAfterContentInit()   // Content projected
+6. ngAfterContentChecked()
+7. ngAfterViewInit()  // View initialized
+8. ngAfterViewChecked()
+9. ngOnDestroy()      // Cleanup before destroy</code></pre>
+                        <p class="card-note">Most commonly used: ngOnInit, ngOnDestroy, ngOnChanges</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Routing -->
+            <section class="cheat-section" id="routing">
+                <h2>🧭 Routing</h2>
+                <p class="section-desc">Navigate between views in your application.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Route Configuration</h3>
+                        <pre><code>// app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+    { path: '', component: HomeComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'users', component: UserListComponent },
+    { path: 'users/:id', component: UserDetailComponent },  // Route parameter
+    { path: '**', component: NotFoundComponent }  // Wildcard (404)
+];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule {}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Router Links</h3>
+                        <pre><code>&lt;!-- Basic navigation --&gt;
+&lt;a routerLink="/about"&gt;About&lt;/a&gt;
+
+&lt;!-- With parameters --&gt;
+&lt;a [routerLink]="['/users', user.id]"&gt;
+    {{ user.name }}
+&lt;/a&gt;
+
+&lt;!-- Active link styling --&gt;
+&lt;a routerLink="/home" 
+   routerLinkActive="active"
+   [routerLinkActiveOptions]="{exact: true}"&gt;
+    Home
+&lt;/a&gt;
+
+&lt;!-- Router outlet (where views render) --&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Programmatic Navigation</h3>
+                        <pre><code>import { Router, ActivatedRoute } from '@angular/router';
+
+@Component({...})
+export class NavComponent {
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute
+    ) {}
+    
+    goToUser(id: number): void {
+        this.router.navigate(['/users', id]);
+    }
+    
+    goHome(): void {
+        this.router.navigateByUrl('/');
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Route Parameters</h3>
+                        <pre><code>import { ActivatedRoute } from '@angular/router';
+
+@Component({...})
+export class UserDetailComponent implements OnInit {
+    userId!: string;
+    
+    constructor(private route: ActivatedRoute) {}
+    
+    ngOnInit(): void {
+        // Snapshot (one-time)
+        this.userId = this.route.snapshot.paramMap.get('id')!;
+        
+        // Observable (reactive)
+        this.route.paramMap.subscribe(params => {
+            this.userId = params.get('id')!;
+        });
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forms -->
+            <section class="cheat-section" id="forms">
+                <h2>📝 Forms</h2>
+                <p class="section-desc">Two approaches to handling user input.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Template-driven Forms</h3>
+                        <pre><code>&lt;!-- Requires FormsModule --&gt;
+&lt;form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)"&gt;
+    &lt;input 
+        name="email" 
+        [(ngModel)]="email" 
+        required 
+        email
+        #emailInput="ngModel"&gt;
+    
+    &lt;div *ngIf="emailInput.invalid && emailInput.touched"&gt;
+        Please enter a valid email
+    &lt;/div&gt;
+    
+    &lt;input 
+        name="password" 
+        type="password"
+        [(ngModel)]="password" 
+        required 
+        minlength="6"&gt;
+    
+    &lt;button [disabled]="loginForm.invalid"&gt;Login&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Reactive Forms</h3>
+                        <pre><code>import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+@Component({...})
+export class LoginComponent {
+    loginForm = new FormGroup({
+        email: new FormControl('', [
+            Validators.required,
+            Validators.email
+        ]),
+        password: new FormControl('', [
+            Validators.required,
+            Validators.minLength(6)
+        ])
+    });
+    
+    onSubmit(): void {
+        if (this.loginForm.valid) {
+            console.log(this.loginForm.value);
+        }
+    }
+}
+
+// Template:
+&lt;form [formGroup]="loginForm" (ngSubmit)="onSubmit()"&gt;
+    &lt;input formControlName="email"&gt;
+    &lt;input formControlName="password" type="password"&gt;
+    &lt;button [disabled]="loginForm.invalid"&gt;Login&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Form Validation</h3>
+                        <pre><code>// Built-in validators
+Validators.required
+Validators.email
+Validators.min(5)
+Validators.max(100)
+Validators.minLength(3)
+Validators.maxLength(50)
+Validators.pattern(/^[a-zA-Z]+$/)
+
+// Check validation state
+form.get('email')?.valid
+form.get('email')?.invalid
+form.get('email')?.touched
+form.get('email')?.dirty
+form.get('email')?.errors?.['required']
+form.get('email')?.errors?.['email']</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pipes -->
+            <section class="cheat-section" id="pipes">
+                <h2>🔧 Pipes</h2>
+                <p class="section-desc">Transform data for display in templates.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Built-in Pipes</h3>
+                        <pre><code>&lt;!-- Text transformation --&gt;
+{{ name | uppercase }}         &lt;!-- ALEX --&gt;
+{{ name | lowercase }}         &lt;!-- alex --&gt;
+{{ name | titlecase }}         &lt;!-- Alex --&gt;
+
+&lt;!-- Number formatting --&gt;
+{{ price | number }}           &lt;!-- 1,234.57 --&gt;
+{{ price | number:'1.0-2' }}   &lt;!-- 1,234.57 --&gt;
+{{ ratio | percent }}          &lt;!-- 85% --&gt;
+{{ price | currency }}         &lt;!-- $1,234.57 --&gt;
+{{ price | currency:'EUR' }}   &lt;!-- €1,234.57 --&gt;
+
+&lt;!-- Date formatting --&gt;
+{{ today | date }}             &lt;!-- Dec 15, 2025 --&gt;
+{{ today | date:'short' }}     &lt;!-- 12/15/25 --&gt;
+{{ today | date:'fullDate' }}  &lt;!-- Monday, Dec 15, 2025 --&gt;
+{{ today | date:'HH:mm' }}     &lt;!-- 14:30 --&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Object & Array Pipes</h3>
+                        <pre><code>&lt;!-- JSON display --&gt;
+&lt;pre&gt;{{ user | json }}&lt;/pre&gt;
+
+&lt;!-- Array slice --&gt;
+&lt;li *ngFor="let item of items | slice:0:5"&gt;
+    {{ item }}
+&lt;/li&gt;
+
+&lt;!-- Async pipe (Observables) --&gt;
+&lt;div *ngIf="user$ | async as user"&gt;
+    {{ user.name }}
+&lt;/div&gt;
+
+&lt;!-- KeyValue pipe (objects) --&gt;
+&lt;div *ngFor="let item of obj | keyvalue"&gt;
+    {{ item.key }}: {{ item.value }}
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card wide">
+                        <h3>Custom Pipe</h3>
+                        <pre><code>import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+    name: 'truncate'
+})
+export class TruncatePipe implements PipeTransform {
+    transform(value: string, limit: number = 50, ellipsis: string = '...'): string {
+        if (!value) return '';
+        if (value.length <= limit) return value;
+        return value.substring(0, limit) + ellipsis;
+    }
+}
+
+// Usage in template:
+{{ longText | truncate:20 }}       // First 20 chars + ...
+{{ longText | truncate:30:'→' }}   // First 30 chars + →</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Tips -->
+            <section class="cheat-section" id="tips">
+                <h2>💡 Quick Tips</h2>
+                <p class="section-desc">Best practices and common patterns.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Project Structure</h3>
+                        <pre><code>src/
+├── app/
+│   ├── core/           # Singleton services
+│   ├── shared/         # Shared components, pipes
+│   ├── features/       # Feature modules
+│   │   ├── users/
+│   │   └── products/
+│   ├── app.component.ts
+│   ├── app.module.ts
+│   └── app-routing.module.ts
+├── assets/             # Static files
+├── environments/       # Environment configs
+└── styles.css          # Global styles</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Common Gotchas</h3>
+                        <pre><code>// ❌ Don't subscribe in templates like this:
+{{ getData() | async }}  // Called every change detection!
+
+// ✅ Store observable in property:
+data$ = this.service.getData();
+// {{ data$ | async }}
+
+// ❌ Don't forget to unsubscribe:
+this.sub = observable.subscribe();
+// Memory leak!
+
+// ✅ Unsubscribe in ngOnDestroy:
+ngOnDestroy() { this.sub.unsubscribe(); }
+
+// ✅ Or use async pipe (auto-unsubscribes)
+// ✅ Or use takeUntilDestroyed()</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Performance Tips</h3>
+                        <pre><code>// Use trackBy with ngFor
+*ngFor="let item of items; trackBy: trackById"
+
+// Use OnPush change detection
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+
+// Lazy load feature modules
+{ path: 'admin', loadChildren: () => 
+    import('./admin/admin.module')
+    .then(m => m.AdminModule) 
+}
+
+// Use pure pipes (default)
+// Avoid calling methods in templates</code></pre>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>Jonesys Code Dev © 2025 | Angular Cheat Sheet</p>
+                <a href="index.html" class="btn">← Back to Angular Course</a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

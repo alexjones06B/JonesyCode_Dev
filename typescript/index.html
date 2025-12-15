@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonesys Code Dev - Learn to Code</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">Jonesys<span class="brand-accent">Code Dev</span></span>
+            </div>
+            <div class="nav-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalExercises">32</span>
+                    <span class="stat-label">Exercises</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="completedCount">0</span>
+                    <span class="stat-label">Completed</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-badge">Interactive Learning Platform</div>
+            <h1>Master <span class="highlight">TypeScript</span> by Typing Real Code</h1>
+            <p class="hero-subtitle">Learn programming fundamentals through hands-on exercises. Type each line,
+                understand every concept, and build real skills.</p>
+
+            <div class="hero-features">
+                <div class="feature">
+                    <span class="feature-icon">⌨️</span>
+                    <span>Hands-on Practice</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📖</span>
+                    <span>Step-by-Step Learning</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">💾</span>
+                    <span>Progress Saved</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Learning Path Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Learning Path</h2>
+                <p>Complete each module in order to build your TypeScript skills</p>
+            </div>
+
+            <div class="learning-path">
+                <div class="path-line"></div>
+
+                <a href="walkthroughs/typescript-basics.html" class="path-card" data-step="1">
+                    <div class="path-step">1</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">📘</span>
+                            <span class="difficulty beginner">Beginner</span>
+                        </div>
+                        <h3>TypeScript Basics</h3>
+                        <p>Types, variables, and fundamental syntax</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 30 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 8 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                </a>
+
+                <a href="walkthroughs/typescript-interfaces.html" class="path-card" data-step="2">
+                    <div class="path-step">2</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">🔧</span>
+                            <span class="difficulty beginner">Beginner</span>
+                        </div>
+                        <h3>Interfaces</h3>
+                        <p>Define object shapes and contracts</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 25 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 6 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                </a>
+
+                <a href="walkthroughs/typescript-classes.html" class="path-card" data-step="3">
+                    <div class="path-step">3</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">📦</span>
+                            <span class="difficulty intermediate">Intermediate</span>
+                        </div>
+                        <h3>Classes</h3>
+                        <p>Object-oriented programming fundamentals</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 35 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 7 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                </a>
+
+                <a href="walkthroughs/typescript-functions.html" class="path-card" data-step="4">
+                    <div class="path-step">4</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">🎯</span>
+                            <span class="difficulty intermediate">Intermediate</span>
+                        </div>
+                        <h3>Functions</h3>
+                        <p>Typed functions, parameters, and returns</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 30 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 6 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                </a>
+
+                <a href="walkthroughs/typescript-generics.html" class="path-card" data-step="5">
+                    <div class="path-step">5</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">🧬</span>
+                            <span class="difficulty advanced">Advanced</span>
+                        </div>
+                        <h3>Generics</h3>
+                        <p>Create reusable type-safe components</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 40 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 5 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
+                    </div>
+                    <div class="path-arrow">🏆</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="section resources-section">
+            <div class="section-header">
+                <h2>📚 Resources</h2>
+                <p>Quick references to help you while learning</p>
+            </div>
+
+            <div class="resources-grid">
+                <a href="cheatsheet.html" class="resource-card">
+                    <div class="resource-icon">📘</div>
+                    <div class="resource-content">
+                        <h3>TypeScript Cheat Sheet</h3>
+                        <p>Quick reference for all TypeScript syntax, types, interfaces, generics, and utility types.
+                            Bookmark it!</p>
+                        <span class="resource-cta">View Cheat Sheet →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Coming Soon Section -->
+        <section class="section coming-soon-section">
+            <div class="section-header">
+                <h2>Coming Soon</h2>
+                <p>More courses are being developed</p>
+            </div>
+
+            <div class="resources-grid" style="margin-bottom: 30px;">
+                <a href="../angular/index.html" class="resource-card">
+                    <div class="resource-icon">🅰️</div>
+                    <div class="resource-content">
+                        <h3>Angular Course</h3>
+                        <p>Learn Google's powerful framework for building enterprise applications. Components, services,
+                            and more!</p>
+                        <span class="resource-cta">Start Learning Angular →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="coming-soon-grid">
+                <div class="coming-soon-card">
+                    <span class="coming-icon">🟨</span>
+                    <h3>JavaScript Fundamentals</h3>
+                    <p>Core web programming concepts</p>
+                    <span class="coming-badge">In Development</span>
+                </div>
+                <div class="coming-soon-card">
+                    <span class="coming-icon">⚛️</span>
+                    <h3>React Basics</h3>
+                    <p>Building user interfaces</p>
+                    <span class="coming-badge">Planned</span>
+                </div>
+                <div class="coming-soon-card">
+                    <span class="coming-icon">🟢</span>
+                    <h3>Node.js</h3>
+                    <p>Server-side JavaScript</p>
+                    <span class="coming-badge">Planned</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="brand-icon">⚡</span>
+                    <span>DevTraining<span class="brand-accent">Pro</span></span>
+                </div>
+                <p>Build real skills through hands-on practice</p>
+                <div class="footer-links">
+                    <span>© 2025 DevTraining Pro</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Cookie helper function
+        function getCookie(name) {
+            const nameEQ = name + '=';
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.indexOf(nameEQ) === 0) {
+                    return decodeURIComponent(cookie.substring(nameEQ.length));
+                }
+            }
+            return null;
+        }
+
+        // Progress tracking display using cookies
+        document.addEventListener('DOMContentLoaded', () => {
+            let totalCompleted = 0;
+            const walkthroughs = ['typescript-basics', 'typescript-interfaces', 'typescript-classes', 'typescript-functions', 'typescript-generics'];
+
+            walkthroughs.forEach((id, index) => {
+                const saved = getCookie('walkthrough-progress-' + id);
+                if (saved) {
+                    try {
+                        const progress = JSON.parse(saved);
+                        const steps = [8, 6, 7, 6, 5]; // exercises per walkthrough
+                        const completed = progress.completedSteps ? progress.completedSteps.length : 0;
+                        const percentage = Math.round((completed / steps[index]) * 100);
+
+                        const card = document.querySelector(`[data-step="${index + 1}"]`);
+                        if (card) {
+                            const progressFill = card.querySelector('.progress-fill-mini');
+                            const progressText = card.querySelector('.path-progress span:last-child');
+                            if (progressFill) progressFill.style.width = percentage + '%';
+                            if (progressText) progressText.textContent = percentage + '% complete';
+
+                            if (percentage === 100) {
+                                card.classList.add('completed');
+                            }
+                        }
+                        totalCompleted += completed;
+                    } catch (e) { }
+                }
+            });
+
+            document.getElementById('completedCount').textContent = totalCompleted;
+        });
+    </script>
+</body>
+
+</html>

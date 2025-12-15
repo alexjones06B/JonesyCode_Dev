@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Templates - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/walkthrough.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html">← Back to Angular Course</a>
+            <h1>📄 Templates & Data Binding</h1>
+            <p>Connect your data to the view with Angular's template syntax</p>
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text">Step <span id="currentStep">1</span> of <span id="totalSteps">6</span></p>
+            </div>
+        </header>
+
+        <div class="walkthrough-container">
+            <!-- Instruction Panel -->
+            <div class="instruction-panel">
+                <div class="step-indicator">
+                    <span class="current" id="stepBadge">Step 1</span>
+                    <span id="stepTitle">Interpolation</span>
+                </div>
+
+                <h2 id="instructionTitle">Displaying Data with {{ }}</h2>
+
+                <div class="description" id="instructionDesc">
+                    <p>Interpolation is the simplest form of data binding. Use double curly braces to display component
+                        property values in your template.</p>
+                </div>
+
+                <div class="code-breakdown" id="codeBreakdown">
+                    <h3>🔍 Code Breakdown</h3>
+                    <div id="breakdownContent">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <div class="output-section" id="outputSection" style="display: none;">
+                    <h3>📤 What This Does</h3>
+                    <pre id="outputContent"></pre>
+                </div>
+
+                <div class="detailed-explanation" id="detailedExplanation" style="display: none;">
+                    <h4>📚 Deep Dive</h4>
+                    <!-- Dynamically populated -->
+                </div>
+
+                <div class="expected-code">
+                    <h3>📝 Type this code:</h3>
+                    <pre id="expectedCode"></pre>
+                </div>
+
+                <div class="tip-box" id="tipBox">
+                    <h4>💡 Tip</h4>
+                    <p id="tipText">Interpolation automatically converts values to strings, so you can display numbers,
+                        booleans, and even call methods!</p>
+                </div>
+            </div>
+
+            <!-- Code Editor Panel -->
+            <div class="editor-panel">
+                <div class="editor-header">
+                    <div class="dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="filename">app.component.html</span>
+                </div>
+
+                <div class="editor-body">
+                    <div class="line-numbers" id="lineNumbers">1</div>
+                    <div class="code-input-area">
+                        <textarea id="codeInput" placeholder="Start typing your code here..."
+                            spellcheck="false"></textarea>
+                    </div>
+                </div>
+
+                <div class="feedback-area">
+                    <div class="feedback waiting" id="feedback">
+                        ⌨️ Start typing to begin...
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn" id="prevBtn" disabled>← Previous</button>
+                    <button class="btn btn-hint" id="hintBtn">💡 Show Hint</button>
+                    <button class="btn btn-success" id="nextBtn" disabled>Next Step →</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Jonesys Code Dev © 2025 | Keep typing! 💪</p>
+        </footer>
+    </div>
+
+    <!-- Completion Modal -->
+    <div class="modal-overlay" id="completionModal">
+        <div class="modal">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Templates & Data Binding walkthrough! You now understand interpolation, property
+                binding, event binding, and two-way binding.</p>
+            <button class="btn" onclick="location.href='../index.html'">Back to Course</button>
+            <button class="btn btn-success" onclick="location.href='angular-services.html'">Next: Services →</button>
+        </div>
+    </div>
+
+    <script src="../scripts/walkthrough-engine.js"></script>
+    <script src="../scripts/angular-templates.js"></script>
+</body>
+
+</html>

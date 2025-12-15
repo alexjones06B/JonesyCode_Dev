@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Cheat Sheet - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cheatsheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">Jonesys<span class="brand-accent">Code Dev</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to Courses</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="cheatsheet-hero">
+            <div class="hero-badge">Quick Reference Guide</div>
+            <h1>📘 TypeScript <span class="highlight">Cheat Sheet</span></h1>
+            <p class="hero-subtitle">Your go-to reference for TypeScript syntax, types, and patterns. Bookmark this
+                page!</p>
+        </header>
+
+        <!-- Quick Navigation -->
+        <nav class="quick-nav">
+            <a href="#basic-types">Basic Types</a>
+            <a href="#variables">Variables</a>
+            <a href="#arrays">Arrays</a>
+            <a href="#objects">Objects</a>
+            <a href="#functions">Functions</a>
+            <a href="#interfaces">Interfaces</a>
+            <a href="#classes">Classes</a>
+            <a href="#generics">Generics</a>
+            <a href="#utility-types">Utility Types</a>
+            <a href="#type-guards">Type Guards</a>
+        </nav>
+
+        <!-- Cheat Sheet Sections -->
+        <main class="cheatsheet-content">
+
+            <!-- Basic Types -->
+            <section class="cheat-section" id="basic-types">
+                <h2>🎯 Basic Types</h2>
+                <p class="section-desc">The fundamental building blocks of TypeScript's type system.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>String</h3>
+                        <pre><code>let name: string = "Alex";
+let greeting: string = `Hello, ${name}!`;</code></pre>
+                        <p class="card-note">Text values. Use template literals (`) for interpolation.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Number</h3>
+                        <pre><code>let age: number = 25;
+let price: number = 19.99;
+let hex: number = 0xff;</code></pre>
+                        <p class="card-note">All numbers (int, float, hex). No separate integer type.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Boolean</h3>
+                        <pre><code>let isActive: boolean = true;
+let hasPermission: boolean = false;</code></pre>
+                        <p class="card-note">Only <code>true</code> or <code>false</code>. Great for flags.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Any</h3>
+                        <pre><code>let data: any = "hello";
+data = 42;        // OK
+data = true;      // OK</code></pre>
+                        <p class="card-note warning">⚠️ Disables type checking. Avoid when possible!</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Unknown</h3>
+                        <pre><code>let input: unknown = "hello";
+// Must narrow type before use
+if (typeof input === "string") {
+    console.log(input.toUpperCase());
+}</code></pre>
+                        <p class="card-note">Safer than <code>any</code>. Forces type checking.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Void</h3>
+                        <pre><code>function log(msg: string): void {
+    console.log(msg);
+    // No return value
+}</code></pre>
+                        <p class="card-note">Functions that don't return anything.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Null & Undefined</h3>
+                        <pre><code>let nothing: null = null;
+let notDefined: undefined = undefined;
+
+// With strictNullChecks
+let name: string | null = null;</code></pre>
+                        <p class="card-note">Represent absence of value. Use union types.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Never</h3>
+                        <pre><code>function error(msg: string): never {
+    throw new Error(msg);
+}
+
+function infinite(): never {
+    while (true) {}
+}</code></pre>
+                        <p class="card-note">Functions that never return (errors, infinite loops).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variables -->
+            <section class="cheat-section" id="variables">
+                <h2>📦 Variables</h2>
+                <p class="section-desc">Declaring and typing variables in TypeScript.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Variable Declarations</h3>
+                        <pre><code>// Explicit type annotation
+let playerName: string = "Hero";
+
+// Type inference (recommended when obvious)
+let score = 100;  // TypeScript infers: number
+
+// Constant (cannot be reassigned)
+const MAX_LEVEL: number = 99;
+
+// Multiple declarations
+let x: number, y: number, z: number;
+let a = 1, b = 2, c = 3;  // All inferred as number</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>let vs const</h3>
+                        <pre><code>let count = 0;
+count = 1;      // ✅ OK
+
+const MAX = 100;
+MAX = 200;      // ❌ Error!</code></pre>
+                        <p class="card-note">Use <code>const</code> by default. Use <code>let</code> only when
+                            reassignment is needed.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Type Aliases</h3>
+                        <pre><code>type ID = string | number;
+type Point = { x: number; y: number };
+
+let userId: ID = "abc123";
+let position: Point = { x: 10, y: 20 };</code></pre>
+                        <p class="card-note">Create reusable custom types with <code>type</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Arrays -->
+            <section class="cheat-section" id="arrays">
+                <h2>📚 Arrays & Tuples</h2>
+                <p class="section-desc">Working with collections of values.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Array Syntax</h3>
+                        <pre><code>// Type[] syntax (preferred)
+let names: string[] = ["Alice", "Bob"];
+let scores: number[] = [100, 200, 300];
+
+// Array&lt;Type&gt; syntax (generic)
+let items: Array&lt;string&gt; = ["a", "b"];
+
+// Mixed types (union)
+let mixed: (string | number)[] = [1, "two"];</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Tuples</h3>
+                        <pre><code>// Fixed-length array with specific types
+let point: [number, number] = [10, 20];
+let user: [string, number] = ["Alex", 25];
+
+// Named tuple elements (TS 4.0+)
+type Coord = [x: number, y: number];
+let pos: Coord = [100, 200];</code></pre>
+                        <p class="card-note">Unlike arrays, tuples have fixed length and types per position.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Array Methods</h3>
+                        <pre><code>const nums: number[] = [1, 2, 3];
+
+nums.push(4);           // Add to end
+nums.pop();             // Remove from end
+nums.map(n => n * 2);   // [2, 4, 6]
+nums.filter(n => n > 1);// [2, 3]
+nums.find(n => n > 1);  // 2
+nums.includes(2);       // true</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Readonly Arrays</h3>
+                        <pre><code>const items: readonly string[] = ["a", "b"];
+// OR
+const items: ReadonlyArray&lt;string&gt; = ["a", "b"];
+
+items.push("c");  // ❌ Error!
+items[0] = "z";   // ❌ Error!</code></pre>
+                        <p class="card-note">Prevent modifications to arrays.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Objects -->
+            <section class="cheat-section" id="objects">
+                <h2>🔧 Objects</h2>
+                <p class="section-desc">Defining object shapes and properties.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Inline Object Types</h3>
+                        <pre><code>let player: { 
+    name: string; 
+    level: number 
+} = { 
+    name: "Hero", 
+    level: 5 
+};</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Optional Properties</h3>
+                        <pre><code>let user: {
+    name: string;
+    email?: string;  // Optional
+} = { name: "Alex" };
+
+console.log(user.email); // undefined</code></pre>
+                        <p class="card-note">Use <code>?</code> to mark properties as optional.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Readonly Properties</h3>
+                        <pre><code>let config: {
+    readonly apiKey: string;
+    timeout: number;
+} = { apiKey: "abc123", timeout: 5000 };
+
+config.timeout = 3000;  // ✅ OK
+config.apiKey = "xyz";  // ❌ Error!</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Index Signatures</h3>
+                        <pre><code>let scores: { 
+    [player: string]: number 
+} = {};
+
+scores["Alice"] = 100;  // ✅ OK
+scores["Bob"] = 200;    // ✅ OK</code></pre>
+                        <p class="card-note">For objects with dynamic property names.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Functions -->
+            <section class="cheat-section" id="functions">
+                <h2>🎯 Functions</h2>
+                <p class="section-desc">Type-safe function declarations.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Basic Functions</h3>
+                        <pre><code>// Function declaration
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+// Arrow function
+const multiply = (a: number, b: number): number => {
+    return a * b;
+};</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Optional & Default Params</h3>
+                        <pre><code>// Optional parameter
+function greet(name: string, greeting?: string) {
+    return `${greeting || "Hello"}, ${name}!`;
+}
+
+// Default parameter
+function greet(name: string, greeting = "Hello") {
+    return `${greeting}, ${name}!`;
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Rest Parameters</h3>
+                        <pre><code>function sum(...numbers: number[]): number {
+    return numbers.reduce((a, b) => a + b, 0);
+}
+
+sum(1, 2, 3);      // 6
+sum(1, 2, 3, 4, 5); // 15</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Function Types</h3>
+                        <pre><code>// Function type alias
+type MathOp = (a: number, b: number) => number;
+
+const add: MathOp = (a, b) => a + b;
+const sub: MathOp = (a, b) => a - b;
+
+// Callback parameter
+function process(data: string, callback: (result: string) => void) {
+    callback(data.toUpperCase());
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Overloads</h3>
+                        <pre><code>// Different signatures for same function
+function format(value: string): string;
+function format(value: number): string;
+function format(value: string | number): string {
+    return String(value);
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interfaces -->
+            <section class="cheat-section" id="interfaces">
+                <h2>📋 Interfaces</h2>
+                <p class="section-desc">Define contracts for object shapes.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Basic Interface</h3>
+                        <pre><code>interface User {
+    id: number;
+    name: string;
+    email: string;
+}
+
+const user: User = {
+    id: 1,
+    name: "Alex",
+    email: "alex@example.com"
+};</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Optional & Readonly</h3>
+                        <pre><code>interface Product {
+    readonly id: string;
+    name: string;
+    price: number;
+    description?: string;  // Optional
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Extending Interfaces</h3>
+                        <pre><code>interface Animal {
+    name: string;
+}
+
+interface Dog extends Animal {
+    breed: string;
+    bark(): void;
+}
+
+const dog: Dog = {
+    name: "Buddy",
+    breed: "Golden Retriever",
+    bark: () => console.log("Woof!")
+};</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Interface vs Type</h3>
+                        <pre><code>// Interface - can be extended, merged
+interface User {
+    name: string;
+}
+interface User {  // Declaration merging
+    age: number;
+}
+
+// Type - more flexible syntax
+type ID = string | number;
+type Point = { x: number; y: number };
+type Coord = [number, number];</code></pre>
+                        <p class="card-note">Use interfaces for objects, types for unions/primitives.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Classes -->
+            <section class="cheat-section" id="classes">
+                <h2>📦 Classes</h2>
+                <p class="section-desc">Object-oriented programming with types.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Class Definition</h3>
+                        <pre><code>class Player {
+    // Properties with access modifiers
+    public name: string;
+    private score: number;
+    protected level: number;
+    readonly id: string;
+
+    // Constructor
+    constructor(name: string) {
+        this.name = name;
+        this.score = 0;
+        this.level = 1;
+        this.id = crypto.randomUUID();
+    }
+
+    // Methods
+    public addScore(points: number): void {
+        this.score += points;
+    }
+
+    public getScore(): number {
+        return this.score;
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Shorthand Constructor</h3>
+                        <pre><code>class User {
+    constructor(
+        public name: string,
+        private email: string,
+        readonly id: number
+    ) {}
+}
+
+// Equivalent to declaring and assigning
+// all properties manually!</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Inheritance</h3>
+                        <pre><code>class Animal {
+    constructor(public name: string) {}
+    
+    speak(): void {
+        console.log(`${this.name} makes a sound`);
+    }
+}
+
+class Dog extends Animal {
+    constructor(name: string, public breed: string) {
+        super(name);  // Call parent constructor
+    }
+    
+    speak(): void {
+        console.log(`${this.name} barks!`);
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Implementing Interfaces</h3>
+                        <pre><code>interface Printable {
+    print(): void;
+}
+
+interface Saveable {
+    save(): Promise&lt;void&gt;;
+}
+
+class Document implements Printable, Saveable {
+    print(): void {
+        console.log("Printing...");
+    }
+    
+    async save(): Promise&lt;void&gt; {
+        // Save logic
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Abstract Classes</h3>
+                        <pre><code>abstract class Shape {
+    abstract getArea(): number;
+    
+    describe(): string {
+        return `Area: ${this.getArea()}`;
+    }
+}
+
+class Circle extends Shape {
+    constructor(private radius: number) {
+        super();
+    }
+    
+    getArea(): number {
+        return Math.PI * this.radius ** 2;
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Generics -->
+            <section class="cheat-section" id="generics">
+                <h2>🔮 Generics</h2>
+                <p class="section-desc">Write flexible, reusable code with type parameters.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Generic Functions</h3>
+                        <pre><code>function identity&lt;T&gt;(value: T): T {
+    return value;
+}
+
+identity&lt;string&gt;("hello");  // "hello"
+identity&lt;number&gt;(42);       // 42
+identity(true);              // boolean (inferred)</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Generic Interfaces</h3>
+                        <pre><code>interface Box&lt;T&gt; {
+    value: T;
+    getValue(): T;
+}
+
+const stringBox: Box&lt;string&gt; = {
+    value: "hello",
+    getValue() { return this.value; }
+};
+
+interface Pair&lt;K, V&gt; {
+    key: K;
+    value: V;
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Generic Classes</h3>
+                        <pre><code>class Stack&lt;T&gt; {
+    private items: T[] = [];
+    
+    push(item: T): void {
+        this.items.push(item);
+    }
+    
+    pop(): T | undefined {
+        return this.items.pop();
+    }
+}
+
+const numStack = new Stack&lt;number&gt;();
+numStack.push(1);
+numStack.push(2);</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Generic Constraints</h3>
+                        <pre><code>interface HasLength {
+    length: number;
+}
+
+function logLength&lt;T extends HasLength&gt;(item: T): void {
+    console.log(item.length);
+}
+
+logLength("hello");      // ✅ 5
+logLength([1, 2, 3]);    // ✅ 3
+logLength(123);          // ❌ Error!</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>keyof Constraint</h3>
+                        <pre><code>function getProperty&lt;T, K extends keyof T&gt;(
+    obj: T, 
+    key: K
+): T[K] {
+    return obj[key];
+}
+
+const user = { name: "Alex", age: 25 };
+getProperty(user, "name");  // ✅ "Alex"
+getProperty(user, "foo");   // ❌ Error!</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Utility Types -->
+            <section class="cheat-section" id="utility-types">
+                <h2>🛠️ Utility Types</h2>
+                <p class="section-desc">Built-in helper types for common transformations.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Partial&lt;T&gt;</h3>
+                        <pre><code>interface User {
+    name: string;
+    email: string;
+}
+
+// All properties become optional
+type PartialUser = Partial&lt;User&gt;;
+// { name?: string; email?: string; }
+
+function updateUser(user: User, updates: Partial&lt;User&gt;) {
+    return { ...user, ...updates };
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Required&lt;T&gt;</h3>
+                        <pre><code>interface Config {
+    host?: string;
+    port?: number;
+}
+
+// All properties become required
+type FullConfig = Required&lt;Config&gt;;
+// { host: string; port: number; }</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Pick&lt;T, K&gt;</h3>
+                        <pre><code>interface User {
+    id: number;
+    name: string;
+    email: string;
+    password: string;
+}
+
+// Select specific properties
+type PublicUser = Pick&lt;User, "id" | "name"&gt;;
+// { id: number; name: string; }</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Omit&lt;T, K&gt;</h3>
+                        <pre><code>interface User {
+    id: number;
+    name: string;
+    password: string;
+}
+
+// Exclude specific properties
+type SafeUser = Omit&lt;User, "password"&gt;;
+// { id: number; name: string; }</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Record&lt;K, V&gt;</h3>
+                        <pre><code>// Create object type with specific keys
+type Role = "admin" | "user" | "guest";
+
+const permissions: Record&lt;Role, string[]&gt; = {
+    admin: ["read", "write", "delete"],
+    user: ["read", "write"],
+    guest: ["read"]
+};</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Readonly&lt;T&gt;</h3>
+                        <pre><code>interface User {
+    name: string;
+    age: number;
+}
+
+const user: Readonly&lt;User&gt; = {
+    name: "Alex",
+    age: 25
+};
+
+user.name = "Bob";  // ❌ Error!</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Type Guards -->
+            <section class="cheat-section" id="type-guards">
+                <h2>🛡️ Type Guards</h2>
+                <p class="section-desc">Narrow types at runtime for safer code.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>typeof Guard</h3>
+                        <pre><code>function process(value: string | number) {
+    if (typeof value === "string") {
+        // TypeScript knows: value is string
+        return value.toUpperCase();
+    } else {
+        // TypeScript knows: value is number
+        return value.toFixed(2);
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>instanceof Guard</h3>
+                        <pre><code>class Dog { bark() {} }
+class Cat { meow() {} }
+
+function speak(animal: Dog | Cat) {
+    if (animal instanceof Dog) {
+        animal.bark();
+    } else {
+        animal.meow();
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>in Guard</h3>
+                        <pre><code>interface Bird { fly(): void; }
+interface Fish { swim(): void; }
+
+function move(animal: Bird | Fish) {
+    if ("fly" in animal) {
+        animal.fly();
+    } else {
+        animal.swim();
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Custom Type Guard</h3>
+                        <pre><code>interface User { name: string; email: string; }
+interface Admin extends User { adminLevel: number; }
+
+function isAdmin(user: User): user is Admin {
+    return "adminLevel" in user;
+}
+
+function greet(user: User | Admin) {
+    if (isAdmin(user)) {
+        console.log(`Admin level: ${user.adminLevel}`);
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Discriminated Unions</h3>
+                        <pre><code>interface Circle { kind: "circle"; radius: number; }
+interface Square { kind: "square"; size: number; }
+
+type Shape = Circle | Square;
+
+function getArea(shape: Shape): number {
+    switch (shape.kind) {
+        case "circle":
+            return Math.PI * shape.radius ** 2;
+        case "square":
+            return shape.size ** 2;
+    }
+}</code></pre>
+                        <p class="card-note">Use a common <code>kind</code> property to distinguish types.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="cheatsheet-footer">
+            <p>💡 <strong>Pro Tip:</strong> Bookmark this page (⌘/Ctrl + D) for quick reference while coding!</p>
+            <p>DevTraining Pro © 2025 | <a href="index.html">Back to Courses</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>

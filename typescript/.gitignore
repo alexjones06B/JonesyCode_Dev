@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+*.js
+!scripts/*.js
+
+# IDE
+.vscode/
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+

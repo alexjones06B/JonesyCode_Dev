@@ -1,0 +1,22 @@
+{
+    "name": "angular-learning-module",
+    "version": "1.0.0",
+    "description": "Learn Angular through hands-on typing exercises - Jonesys Code Dev",
+    "main": "index.html",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "serve": "npx http-server . -p 8081 -o"
+    },
+    "keywords": [
+        "angular",
+        "learning",
+        "tutorial",
+        "typescript"
+    ],
+    "author": "Jonesys Code Dev",
+    "license": "MIT",
+    "devDependencies": {
+        "typescript": "^5.0.0"
+    }
+}
