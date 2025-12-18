@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Cheat Sheet - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cheatsheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">Jonesys<span class="brand-accent">Code Dev</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to Courses</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="cheatsheet-hero">
+            <div class="hero-badge">Quick Reference Guide</div>
+            <h1>🎨 CSS <span class="highlight">Cheat Sheet</span></h1>
+            <p class="hero-subtitle">Your go-to reference for CSS selectors, properties, and layout patterns. Bookmark
+                this
+                page!</p>
+        </header>
+
+        <!-- Quick Navigation -->
+        <nav class="quick-nav">
+            <a href="#selectors">Selectors</a>
+            <a href="#colors">Colors</a>
+            <a href="#box-model">Box Model</a>
+            <a href="#typography">Typography</a>
+            <a href="#flexbox">Flexbox</a>
+            <a href="#grid">Grid</a>
+            <a href="#positioning">Positioning</a>
+            <a href="#transitions">Transitions</a>
+        </nav>
+
+        <!-- Cheat Sheet Sections -->
+        <main class="cheatsheet-content">
+
+            <!-- Selectors -->
+            <section class="cheat-section" id="selectors">
+                <h2>🎯 Selectors</h2>
+                <p class="section-desc">Target HTML elements to apply styles.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Basic Selectors</h3>
+                        <pre><code>/* Element Selector */
+p { color: blue; }
+
+/* Class Selector */
+.classname { color: red; }
+
+/* ID Selector */
+#idname { color: green; }
+
+/* Universal Selector */
+* { margin: 0; }</code></pre>
+                        <p class="card-note">Classes are reusable (use <code>.</code>), IDs are unique (use
+                            <code>#</code>).</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Combinators</h3>
+                        <pre><code>/* Descendant */
+div p { }
+
+/* Direct Child */
+div > p { }
+
+/* Adjacent Sibling */
+h1 + p { }
+
+/* General Sibling */
+h1 ~ p { }</code></pre>
+                        <p class="card-note">Combine selectors to target specific element relationships.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Pseudo-classes</h3>
+                        <pre><code>a:hover { color: red; }
+a:visited { color: purple; }
+input:focus { outline: 2px solid blue; }
+li:first-child { font-weight: bold; }
+li:nth-child(2) { color: green; }</code></pre>
+                        <p class="card-note">Style elements based on state or position.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Pseudo-elements</h3>
+                        <pre><code>p::first-line { font-weight: bold; }
+p::first-letter { font-size: 2em; }
+div::before { content: "→ "; }
+div::after { content: " ←"; }</code></pre>
+                        <p class="card-note">Style specific parts of elements or add content.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors -->
+            <section class="cheat-section" id="colors">
+                <h2>🌈 Colors & Backgrounds</h2>
+                <p class="section-desc">Color values and background properties.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Color Values</h3>
+                        <pre><code>/* Named Colors */
+color: red;
+
+/* Hexadecimal */
+color: #ff0000;
+color: #f00;
+
+/* RGB & RGBA */
+color: rgb(255, 0, 0);
+color: rgba(255, 0, 0, 0.5);
+
+/* HSL & HSLA */
+color: hsl(0, 100%, 50%);
+color: hsla(0, 100%, 50%, 0.5);</code></pre>
+                        <p class="card-note">RGBA and HSLA include alpha for transparency.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Gradients</h3>
+                        <pre><code>/* Linear Gradient */
+background: linear-gradient(to right, red, blue);
+background: linear-gradient(45deg, red, blue);
+
+/* Radial Gradient */
+background: radial-gradient(circle, red, blue);
+
+/* Multiple Color Stops */
+background: linear-gradient(
+    to right,
+    red 0%,
+    yellow 50%,
+    green 100%
+);</code></pre>
+                        <p class="card-note">Use gradients for smooth color transitions.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Background Properties</h3>
+                        <pre><code>background-color: #f0f0f0;
+background-image: url('image.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+/* Shorthand */
+background: #f0f0f0 url('img.jpg') 
+            center/cover no-repeat;</code></pre>
+                        <p class="card-note"><code>background-size: cover</code> fills the container.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Box Model -->
+            <section class="cheat-section" id="box-model">
+                <h2>📦 Box Model</h2>
+                <p class="section-desc">Control spacing, borders, and element dimensions.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Box Model Properties</h3>
+                        <pre><code>/* Content dimensions */
+width: 300px;
+height: 200px;
+
+/* Padding (inside the border) */
+padding: 20px;                    /* All sides */
+padding: 10px 20px;               /* Vertical | Horizontal */
+padding: 10px 20px 15px 25px;     /* Top | Right | Bottom | Left */
+
+/* Border */
+border: 1px solid black;
+border-radius: 10px;
+
+/* Margin (outside the border) */
+margin: 20px;
+margin: 0 auto;                   /* Center horizontally */</code></pre>
+                        <p class="card-note">Use <code>box-sizing: border-box</code> to include padding and border in
+                            width/height.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Border Styles</h3>
+                        <pre><code>border: 2px solid #333;
+border-top: 3px dashed red;
+border-radius: 10px;
+border-radius: 50%;  /* Circle */
+
+/* Individual properties */
+border-width: 1px;
+border-style: solid;
+border-color: #333;</code></pre>
+                        <p class="card-note">Border styles: solid, dashed, dotted, double, groove, ridge.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Box Shadow</h3>
+                        <pre><code>/* offset-x | offset-y | color */
+box-shadow: 5px 5px gray;
+
+/* offset-x | offset-y | blur | color */
+box-shadow: 5px 5px 10px gray;
+
+/* With spread */
+box-shadow: 5px 5px 10px 2px gray;
+
+/* Inset shadow */
+box-shadow: inset 0 0 10px gray;
+
+/* Multiple shadows */
+box-shadow: 
+    0 2px 4px rgba(0,0,0,0.1),
+    0 8px 16px rgba(0,0,0,0.1);</code></pre>
+                        <p class="card-note">Use rgba for subtle, layered shadows.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Typography -->
+            <section class="cheat-section" id="typography">
+                <h2>✍️ Typography</h2>
+                <p class="section-desc">Font and text styling properties.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Font Properties</h3>
+                        <pre><code>font-family: 'Arial', sans-serif;
+font-size: 16px;
+font-weight: bold;  /* or 100-900 */
+font-style: italic;
+font-variant: small-caps;
+
+/* Shorthand */
+font: italic bold 16px/1.5 Arial;</code></pre>
+                        <p class="card-note">Always include fallback fonts in font-family.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Text Properties</h3>
+                        <pre><code>text-align: center;
+text-decoration: underline;
+text-transform: uppercase;
+text-indent: 2em;
+letter-spacing: 2px;
+word-spacing: 4px;
+line-height: 1.6;
+white-space: nowrap;</code></pre>
+                        <p class="card-note"><code>line-height</code> improves readability.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Web Fonts</h3>
+                        <pre><code>/* Google Fonts (in HTML head) */
+&lt;link href="https://fonts.googleapis.com/
+css2?family=Roboto&display=swap" 
+rel="stylesheet"&gt;
+
+/* In CSS */
+font-family: 'Roboto', sans-serif;
+
+/* @font-face */
+@font-face {
+    font-family: 'MyFont';
+    src: url('myfont.woff2') format('woff2');
+}</code></pre>
+                        <p class="card-note">WOFF2 format offers the best compression.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Flexbox -->
+            <section class="cheat-section" id="flexbox">
+                <h2>📐 Flexbox</h2>
+                <p class="section-desc">One-dimensional layout for rows or columns.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Flex Container</h3>
+                        <pre><code>.container {
+    display: flex;
+    flex-direction: row;          /* row | row-reverse | column | column-reverse */
+    flex-wrap: wrap;              /* nowrap | wrap | wrap-reverse */
+    justify-content: center;      /* flex-start | flex-end | center | space-between | space-around | space-evenly */
+    align-items: center;          /* flex-start | flex-end | center | stretch | baseline */
+    align-content: center;        /* For multi-line containers */
+    gap: 20px;                    /* Space between items */
+}</code></pre>
+                        <p class="card-note"><code>justify-content</code> controls the main axis,
+                            <code>align-items</code> controls the cross axis.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Flex Items</h3>
+                        <pre><code>.item {
+    flex-grow: 1;      /* Grow ratio */
+    flex-shrink: 0;    /* Shrink ratio */
+    flex-basis: 200px; /* Initial size */
+    
+    /* Shorthand */
+    flex: 1;           /* grow */
+    flex: 1 1 200px;   /* grow shrink basis */
+    
+    align-self: center; /* Override align-items */
+    order: 2;          /* Change order */
+}</code></pre>
+                        <p class="card-note"><code>flex: 1</code> makes items grow equally.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Common Patterns</h3>
+                        <pre><code>/* Center everything */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Space between with wrap */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Sticky footer */
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.content { flex: 1; }</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid -->
+            <section class="cheat-section" id="grid">
+                <h2>🔲 CSS Grid</h2>
+                <p class="section-desc">Two-dimensional layout for complex designs.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Grid Container</h3>
+                        <pre><code>.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;           /* 3 equal columns */
+    grid-template-columns: repeat(3, 1fr);        /* Same as above */
+    grid-template-columns: 200px 1fr 200px;       /* Fixed + flexible */
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;                                    /* Row and column gap */
+    row-gap: 10px;
+    column-gap: 20px;
+}</code></pre>
+                        <p class="card-note"><code>fr</code> unit represents a fraction of available space.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Grid Items</h3>
+                        <pre><code>.item {
+    grid-column: 1 / 3;      /* Span columns 1-2 */
+    grid-column: span 2;     /* Span 2 columns */
+    grid-row: 1 / 3;         /* Span rows 1-2 */
+    
+    /* Shorthand */
+    grid-area: 1 / 1 / 3 / 3;
+    /* row-start / col-start / row-end / col-end */
+}</code></pre>
+                        <p class="card-note">Use <code>span</code> for relative sizing.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Auto-fit & Minmax</h3>
+                        <pre><code>/* Responsive grid */
+.responsive {
+    display: grid;
+    grid-template-columns: 
+        repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Auto-fill vs auto-fit */
+/* auto-fill: creates empty tracks */
+/* auto-fit: collapses empty tracks */</code></pre>
+                        <p class="card-note">Perfect for responsive card layouts!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Positioning -->
+            <section class="cheat-section" id="positioning">
+                <h2>📍 Positioning</h2>
+                <p class="section-desc">Control element positioning and stacking.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Position Values</h3>
+                        <pre><code>position: static;    /* Default */
+position: relative;  /* Relative to normal position */
+position: absolute;  /* Relative to positioned ancestor */
+position: fixed;     /* Relative to viewport */
+position: sticky;    /* Hybrid of relative and fixed */
+
+/* Offset properties */
+top: 20px;
+right: 20px;
+bottom: 20px;
+left: 20px;</code></pre>
+                        <p class="card-note"><code>absolute</code> elements are removed from document flow.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Z-Index & Stacking</h3>
+                        <pre><code>/* Higher z-index = on top */
+.behind { z-index: 1; }
+.infront { z-index: 2; }
+
+/* Only works on positioned elements */
+.modal {
+    position: fixed;
+    z-index: 1000;
+}
+
+.overlay {
+    position: fixed;
+    z-index: 999;
+}</code></pre>
+                        <p class="card-note">z-index only works on positioned elements (not static).</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Common Patterns</h3>
+                        <pre><code>/* Sticky header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Absolute center */
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Full-screen overlay */
+.overlay {
+    position: fixed;
+    inset: 0;  /* top, right, bottom, left = 0 */
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transitions & Animations -->
+            <section class="cheat-section" id="transitions">
+                <h2>✨ Transitions & Animations</h2>
+                <p class="section-desc">Add motion and interactivity to elements.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Transitions</h3>
+                        <pre><code>/* Individual properties */
+transition-property: all;
+transition-duration: 0.3s;
+transition-timing-function: ease;
+transition-delay: 0s;
+
+/* Shorthand */
+transition: all 0.3s ease;
+transition: transform 0.3s, opacity 0.3s;
+
+/* Timing functions */
+/* ease | linear | ease-in | ease-out | ease-in-out */
+/* cubic-bezier(0.4, 0, 0.2, 1) */</code></pre>
+                        <p class="card-note">Transition specific properties for better performance.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Transform</h3>
+                        <pre><code>transform: translateX(50px);
+transform: translateY(-20px);
+transform: translate(50px, -20px);
+transform: scale(1.2);
+transform: rotate(45deg);
+transform: skew(10deg);
+
+/* Combine transforms */
+transform: translate(-50%, -50%) scale(1.1);
+
+/* Transform origin */
+transform-origin: center;
+transform-origin: top left;</code></pre>
+                        <p class="card-note">Transforms don't affect document flow.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Keyframe Animations</h3>
+                        <pre><code>@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+}
+
+.animate {
+    animation: fadeIn 0.5s ease forwards;
+    animation: name duration timing delay 
+               iteration direction fill-mode;
+}</code></pre>
+                        <p class="card-note"><code>forwards</code> keeps the final state after animation.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Made with ❤️ by Jonesys Code Dev</p>
+        </div>
+    </footer>
+</body>
+
+</html>

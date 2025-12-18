@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/walkthrough.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html">← Back to Courses</a>
+            <h1>📦 Box Model</h1>
+            <p>Learn margin, padding, borders, and sizing step by step</p>
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text">Step <span id="currentStep">1</span> of <span id="totalSteps">5</span></p>
+            </div>
+        </header>
+
+        <div class="walkthrough-container">
+            <!-- Instruction Panel -->
+            <div class="instruction-panel">
+                <div class="step-indicator">
+                    <span class="current" id="stepBadge">Step 1</span>
+                    <span id="stepTitle">Width and Height</span>
+                </div>
+
+                <h2 id="instructionTitle">Setting Element Dimensions</h2>
+
+                <div class="description" id="instructionDesc">
+                    <p>The width and height properties set the size of the content area.</p>
+                </div>
+
+                <div class="code-breakdown" id="codeBreakdown">
+                    <h3>🔍 Code Breakdown</h3>
+                    <div id="breakdownContent">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <div class="output-section" id="outputSection" style="display: none;">
+                    <h3>📤 Output Preview</h3>
+                    <pre id="outputContent"></pre>
+                </div>
+
+                <div class="detailed-explanation" id="detailedExplanation" style="display: none;">
+                    <h4>📚 Deep Dive</h4>
+                    <!-- Dynamically populated -->
+                </div>
+
+                <div class="expected-code">
+                    <h3>📝 Type this code:</h3>
+                    <pre id="expectedCode"></pre>
+                </div>
+
+                <div class="tip-box" id="tipBox">
+                    <h4>💡 Tip</h4>
+                    <p id="tipText">Use max-width instead of width for responsive designs!</p>
+                </div>
+            </div>
+
+            <!-- Code Editor Panel -->
+            <div class="editor-panel">
+                <div class="editor-header">
+                    <div class="dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="filename">styles.css</span>
+                </div>
+
+                <div class="editor-body">
+                    <div class="line-numbers" id="lineNumbers">1</div>
+                    <div class="code-input-area">
+                        <textarea id="codeInput" placeholder="Start typing your CSS here..."
+                            spellcheck="false"></textarea>
+                    </div>
+                </div>
+
+                <div class="feedback-area">
+                    <div class="feedback waiting" id="feedback">
+                        ⌨️ Start typing to begin...
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn" id="prevBtn" disabled>← Previous</button>
+                    <button class="btn btn-hint" id="hintBtn">💡 Show Hint</button>
+                    <button class="btn btn-success" id="nextBtn" disabled>Next Step →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Modal -->
+        <div class="completion-modal" id="completionModal">
+            <div class="modal-content">
+                <h2>🎉 Congratulations!</h2>
+                <p>You've completed the Box Model walkthrough! You now understand padding, margin, and borders.</p>
+                <a href="../index.html" class="btn btn-success">Back to Course</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/walkthrough-engine.js" type="module"></script>
+    <script src="../scripts/css-box-model.js" type="module"></script>
+</body>
+
+</html>

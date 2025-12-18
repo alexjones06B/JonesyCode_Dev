@@ -4,39 +4,54 @@
  */
 
 // ============================================
-// COOKIE HELPER FUNCTIONS
+// STORAGE HELPER FUNCTIONS (localStorage)
 // ============================================
 
 /**
- * Sets a cookie with the given name, value, and expiration days
+ * Saves a value to localStorage
  */
-function setCookie(name: string, value: string, days: number = 365): void {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = 'expires=' + date.toUTCString();
-    document.cookie = name + '=' + encodeURIComponent(value) + ';' + expires + ';path=/;SameSite=Lax';
-}
-
-/**
- * Gets a cookie value by name
- */
-function getCookie(name: string): string | null {
-    const nameEQ = name + '=';
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.indexOf(nameEQ) === 0) {
-            return decodeURIComponent(cookie.substring(nameEQ.length));
-        }
+function setStorage(name: string, value: string): void {
+    try {
+        localStorage.setItem(name, value);
+    } catch (e) {
+        console.warn('localStorage not available, progress will not persist');
     }
-    return null;
 }
 
 /**
- * Deletes a cookie by name
+ * Gets a value from localStorage
  */
+function getStorage(name: string): string | null {
+    try {
+        return localStorage.getItem(name);
+    } catch (e) {
+        console.warn('localStorage not available');
+        return null;
+    }
+}
+
+/**
+ * Removes a value from localStorage
+ */
+function removeStorage(name: string): void {
+    try {
+        localStorage.removeItem(name);
+    } catch (e) {
+        console.warn('localStorage not available');
+    }
+}
+
+// Legacy cookie functions for backwards compatibility
+function setCookie(name: string, value: string, days: number = 365): void {
+    setStorage(name, value);
+}
+
+function getCookie(name: string): string | null {
+    return getStorage(name);
+}
+
 function deleteCookie(name: string): void {
-    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
+    removeStorage(name);
 }
 
 // ============================================

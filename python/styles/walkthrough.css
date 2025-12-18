@@ -1,0 +1,593 @@
+/* Python Walkthrough Page Styles */
+
+/* Progress */
+.progress-section {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.progress-bar {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #00c853, #64dd17);
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 20px;
+}
+
+.progress-text {
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Main Layout */
+.walkthrough-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+    .walkthrough-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Instruction Panel */
+.instruction-panel {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.step-indicator .current {
+    background: #306998;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+.instruction-panel h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.instruction-panel .description {
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* Code Breakdown */
+.code-breakdown {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.code-breakdown h3 {
+    color: #475569;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.code-part {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.code-part:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.code-part code {
+    display: inline-block;
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.code-part p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Syntax highlighting in code */
+.code-part code .keyword {
+    color: #f472b6;
+}
+
+.code-part code .type {
+    color: #38bdf8;
+}
+
+.code-part code .string {
+    color: #a3e635;
+}
+
+.code-part code .number {
+    color: #fbbf24;
+}
+
+.code-part code .comment {
+    color: #64748b;
+}
+
+.code-part code .builtin {
+    color: #4ade80;
+}
+
+.code-part code .function {
+    color: #60a5fa;
+}
+
+/* Expected Code Preview */
+.expected-code {
+    background: #1e293b;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.expected-code h3 {
+    color: #94a3b8;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.expected-code pre {
+    color: #e2e8f0;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+/* Tip Box */
+.tip-box {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 15px 20px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 20px;
+}
+
+.tip-box h4 {
+    color: #d97706;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.tip-box p {
+    color: #92400e;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Output Section - Shows what the code outputs */
+.output-section {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #22c55e;
+}
+
+.output-section h3 {
+    color: #4ade80;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.output-section pre {
+    color: #86efac;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+/* Detailed Explanation Section */
+.detailed-explanation {
+    background: linear-gradient(135deg, #fef3c7, #fef9c3);
+    border-left: 4px solid #fbbf24;
+    padding: 18px 20px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 20px;
+}
+
+.detailed-explanation h4 {
+    color: #d97706;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detailed-explanation p {
+    color: #92400e;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.detailed-explanation code {
+    background: rgba(251, 191, 36, 0.3);
+    color: #b45309;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.85rem;
+}
+
+/* Code Editor Panel */
+.editor-panel {
+    background: #1e293b;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+}
+
+.editor-header {
+    background: #0f172a;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editor-header .dots {
+    display: flex;
+    gap: 8px;
+}
+
+.editor-header .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.editor-header .dot.red {
+    background: #ef4444;
+}
+
+.editor-header .dot.yellow {
+    background: #eab308;
+}
+
+.editor-header .dot.green {
+    background: #22c55e;
+}
+
+.editor-header .filename {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+}
+
+.editor-body {
+    flex: 1;
+    display: flex;
+    position: relative;
+}
+
+.line-numbers {
+    background: #0f172a;
+    padding: 20px 15px;
+    color: #475569;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: right;
+    user-select: none;
+}
+
+.code-input-area {
+    flex: 1;
+    padding: 20px;
+    position: relative;
+}
+
+#codeInput {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    background: transparent;
+    border: none;
+    color: #e2e8f0;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+}
+
+#codeInput::placeholder {
+    color: #475569;
+}
+
+/* Pyodide Terminal Section */
+.terminal-section {
+    background: #0a0e14;
+    border-top: 1px solid #334155;
+    padding: 15px 20px;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.terminal-header h4 {
+    color: #4ade80;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-header h4::before {
+    content: '🐍';
+}
+
+#pyodideStatus {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+#pyodideStatus.loading {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+}
+
+#pyodideStatus.ready {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+#pyodideStatus.error {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+#terminalOutput {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 15px;
+    min-height: 80px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #a3e635;
+    white-space: pre-wrap;
+}
+
+#terminalOutput:empty::before {
+    content: '# Output will appear here when you run your code...';
+    color: #475569;
+    font-style: italic;
+}
+
+#terminalOutput .error {
+    color: #f87171;
+}
+
+/* Feedback Area */
+.feedback-area {
+    background: #0f172a;
+    padding: 15px 20px;
+    border-top: 1px solid #334155;
+}
+
+#feedback {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+#feedback.success {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+}
+
+#feedback.error {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+}
+
+#feedback.hint {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+}
+
+#feedback.waiting {
+    background: rgba(148, 163, 184, 0.1);
+    color: #94a3b8;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #0f172a;
+    border-top: 1px solid #334155;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    background: linear-gradient(135deg, #306998, #264d73);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(48, 105, 152, 0.4);
+}
+
+.btn:disabled {
+    background: #475569;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#runBtn {
+    background: linear-gradient(135deg, #ffd43b, #e6bc00);
+    color: #1e293b;
+}
+
+#runBtn:hover {
+    box-shadow: 0 5px 15px rgba(255, 212, 59, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.btn-success:hover {
+    box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4);
+}
+
+#hintBtn {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+#hintBtn:hover {
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+}
+
+/* Completion Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 500px;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+.modal h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.modal p {
+    color: #64748b;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal .btn {
+    margin: 5px;
+}
+
+/* Run shortcut hint */
+.keyboard-hint {
+    color: #64748b;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.keyboard-hint kbd {
+    background: #334155;
+    color: #94a3b8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.7rem;
+}

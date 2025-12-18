@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Cheat Sheet - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cheatsheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">Jonesys<span class="brand-accent">Code Dev</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to Courses</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="cheatsheet-hero">
+            <div class="hero-badge">Quick Reference Guide</div>
+            <h1>📄 HTML <span class="highlight">Cheat Sheet</span></h1>
+            <p class="hero-subtitle">Your go-to reference for HTML elements, attributes, and patterns. Bookmark this
+                page!</p>
+        </header>
+
+        <!-- Quick Navigation -->
+        <nav class="quick-nav">
+            <a href="#document-structure">Document Structure</a>
+            <a href="#text-elements">Text Elements</a>
+            <a href="#links-images">Links & Images</a>
+            <a href="#lists">Lists</a>
+            <a href="#tables">Tables</a>
+            <a href="#forms">Forms</a>
+            <a href="#semantic">Semantic Elements</a>
+            <a href="#meta">Meta Tags</a>
+        </nav>
+
+        <!-- Cheat Sheet Sections -->
+        <main class="cheatsheet-content">
+
+            <!-- Document Structure -->
+            <section class="cheat-section" id="document-structure">
+                <h2>🏗️ Document Structure</h2>
+                <p class="section-desc">The fundamental building blocks of every HTML document.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Basic HTML Template</h3>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Your content goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <p class="card-note">Every HTML page starts with this structure. The DOCTYPE tells browsers this
+                            is HTML5.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>&lt;head&gt; Element</h3>
+                        <pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+                        <p class="card-note">Contains metadata, links to stylesheets, and scripts.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>&lt;body&gt; Element</h3>
+                        <pre><code>&lt;body&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;main&gt;...&lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                        <p class="card-note">Contains all visible content on the page.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Text Elements -->
+            <section class="cheat-section" id="text-elements">
+                <h2>📝 Text Elements</h2>
+                <p class="section-desc">Elements for displaying and formatting text content.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Headings</h3>
+                        <pre><code>&lt;h1&gt;Main Heading&lt;/h1&gt;
+&lt;h2&gt;Section Heading&lt;/h2&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;
+&lt;h4&gt;Minor Heading&lt;/h4&gt;
+&lt;h5&gt;Small Heading&lt;/h5&gt;
+&lt;h6&gt;Smallest Heading&lt;/h6&gt;</code></pre>
+                        <p class="card-note">h1 is the most important, h6 the least. Use only one h1 per page.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Paragraphs</h3>
+                        <pre><code>&lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+
+&lt;p&gt;This is another paragraph.
+   Multiple lines are joined.&lt;/p&gt;</code></pre>
+                        <p class="card-note">Use paragraphs to group related sentences together.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Text Formatting</h3>
+                        <pre><code>&lt;strong&gt;Bold text&lt;/strong&gt;
+&lt;em&gt;Italic text&lt;/em&gt;
+&lt;mark&gt;Highlighted&lt;/mark&gt;
+&lt;del&gt;Deleted text&lt;/del&gt;
+&lt;ins&gt;Inserted text&lt;/ins&gt;
+&lt;sub&gt;Subscript&lt;/sub&gt;
+&lt;sup&gt;Superscript&lt;/sup&gt;</code></pre>
+                        <p class="card-note">Use <code>&lt;strong&gt;</code> for importance, <code>&lt;em&gt;</code> for
+                            emphasis.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Line Breaks & Rules</h3>
+                        <pre><code>&lt;p&gt;Line one&lt;br&gt;Line two&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Content after horizontal rule&lt;/p&gt;</code></pre>
+                        <p class="card-note"><code>&lt;br&gt;</code> breaks text, <code>&lt;hr&gt;</code> adds a
+                            horizontal line.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Blockquote</h3>
+                        <pre><code>&lt;blockquote cite="source-url"&gt;
+    &lt;p&gt;A famous quote here.&lt;/p&gt;
+    &lt;footer&gt;— Author Name&lt;/footer&gt;
+&lt;/blockquote&gt;</code></pre>
+                        <p class="card-note">Use for quoting external sources or long quotes.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Code & Preformatted</h3>
+                        <pre><code>&lt;code&gt;const x = 10;&lt;/code&gt;
+
+&lt;pre&gt;
+  Preformatted
+  text preserves
+  spacing
+&lt;/pre&gt;</code></pre>
+                        <p class="card-note"><code>&lt;code&gt;</code> for inline code, <code>&lt;pre&gt;</code> for
+                            code blocks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Links & Images -->
+            <section class="cheat-section" id="links-images">
+                <h2>🔗 Links & Images</h2>
+                <p class="section-desc">Connecting pages and adding visual content.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Links (Anchor Tags)</h3>
+                        <pre><code>&lt;!-- External link --&gt;
+&lt;a href="https://example.com"&gt;Visit Site&lt;/a&gt;
+
+&lt;!-- New tab --&gt;
+&lt;a href="url" target="_blank"&gt;New Tab&lt;/a&gt;
+
+&lt;!-- Email link --&gt;
+&lt;a href="mailto:hello@example.com"&gt;Email&lt;/a&gt;
+
+&lt;!-- Page section --&gt;
+&lt;a href="#section-id"&gt;Jump to Section&lt;/a&gt;</code></pre>
+                        <p class="card-note">The <code>href</code> attribute specifies the destination.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Images</h3>
+                        <pre><code>&lt;img src="image.jpg" alt="Description"&gt;
+
+&lt;!-- With dimensions --&gt;
+&lt;img src="photo.png" 
+     alt="A photo" 
+     width="300" 
+     height="200"&gt;
+
+&lt;!-- Lazy loading --&gt;
+&lt;img src="big.jpg" 
+     alt="Large image" 
+     loading="lazy"&gt;</code></pre>
+                        <p class="card-note">Always include <code>alt</code> text for accessibility!</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Figure & Caption</h3>
+                        <pre><code>&lt;figure&gt;
+    &lt;img src="chart.png" alt="Sales chart"&gt;
+    &lt;figcaption&gt;
+        Q4 2024 Sales Data
+    &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                        <p class="card-note">Use figure to group images with their captions.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Responsive Images</h3>
+                        <pre><code>&lt;picture&gt;
+    &lt;source media="(min-width: 800px)" 
+            srcset="large.jpg"&gt;
+    &lt;source media="(min-width: 400px)" 
+            srcset="medium.jpg"&gt;
+    &lt;img src="small.jpg" alt="Responsive"&gt;
+&lt;/picture&gt;</code></pre>
+                        <p class="card-note">Serve different images based on screen size.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lists -->
+            <section class="cheat-section" id="lists">
+                <h2>📋 Lists</h2>
+                <p class="section-desc">Organizing content in ordered and unordered lists.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Unordered List</h3>
+                        <pre><code>&lt;ul&gt;
+    &lt;li&gt;First item&lt;/li&gt;
+    &lt;li&gt;Second item&lt;/li&gt;
+    &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        <p class="card-note">Bullet points for items without a specific order.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Ordered List</h3>
+                        <pre><code>&lt;ol&gt;
+    &lt;li&gt;Step one&lt;/li&gt;
+    &lt;li&gt;Step two&lt;/li&gt;
+    &lt;li&gt;Step three&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Start from different number --&gt;
+&lt;ol start="5"&gt;
+    &lt;li&gt;Item five&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        <p class="card-note">Numbered items for sequential content.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Description List</h3>
+                        <pre><code>&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+    
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                        <p class="card-note">Term-definition pairs, great for glossaries.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Nested Lists</h3>
+                        <pre><code>&lt;ul&gt;
+    &lt;li&gt;Frontend
+        &lt;ul&gt;
+            &lt;li&gt;HTML&lt;/li&gt;
+            &lt;li&gt;CSS&lt;/li&gt;
+            &lt;li&gt;JavaScript&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Backend&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        <p class="card-note">Lists can be nested inside other lists.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tables -->
+            <section class="cheat-section" id="tables">
+                <h2>📊 Tables</h2>
+                <p class="section-desc">Displaying data in rows and columns.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Basic Table</h3>
+                        <pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Age&lt;/th&gt;
+            &lt;th&gt;City&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Alice&lt;/td&gt;
+            &lt;td&gt;28&lt;/td&gt;
+            &lt;td&gt;London&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Bob&lt;/td&gt;
+            &lt;td&gt;32&lt;/td&gt;
+            &lt;td&gt;Paris&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        <p class="card-note">Use <code>&lt;th&gt;</code> for headers, <code>&lt;td&gt;</code> for data
+                            cells.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Spanning Cells</h3>
+                        <pre><code>&lt;!-- Span 2 columns --&gt;
+&lt;td colspan="2"&gt;Wide cell&lt;/td&gt;
+
+&lt;!-- Span 3 rows --&gt;
+&lt;td rowspan="3"&gt;Tall cell&lt;/td&gt;</code></pre>
+                        <p class="card-note">Merge cells across rows or columns.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Table Caption</h3>
+                        <pre><code>&lt;table&gt;
+    &lt;caption&gt;Employee Directory&lt;/caption&gt;
+    &lt;thead&gt;...&lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        <p class="card-note">Add a title to describe the table content.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forms -->
+            <section class="cheat-section" id="forms">
+                <h2>📮 Forms</h2>
+                <p class="section-desc">Collecting user input and data.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Basic Form</h3>
+                        <pre><code>&lt;form action="/submit" method="POST"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+    
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                        <p class="card-note">Always use <code>&lt;label&gt;</code> elements with the <code>for</code>
+                            attribute.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Text Inputs</h3>
+                        <pre><code>&lt;input type="text" placeholder="Name"&gt;
+&lt;input type="email" placeholder="Email"&gt;
+&lt;input type="password" placeholder="Password"&gt;
+&lt;input type="tel" placeholder="Phone"&gt;
+&lt;input type="url" placeholder="Website"&gt;
+&lt;input type="search" placeholder="Search..."&gt;</code></pre>
+                        <p class="card-note">Different types provide validation and mobile keyboards.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Other Input Types</h3>
+                        <pre><code>&lt;input type="number" min="0" max="100"&gt;
+&lt;input type="range" min="0" max="100"&gt;
+&lt;input type="date"&gt;
+&lt;input type="time"&gt;
+&lt;input type="color"&gt;
+&lt;input type="file" accept="image/*"&gt;</code></pre>
+                        <p class="card-note">HTML5 provides many specialized input types.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Checkbox & Radio</h3>
+                        <pre><code>&lt;!-- Checkboxes (multiple) --&gt;
+&lt;input type="checkbox" id="html" name="skills" value="html"&gt;
+&lt;label for="html"&gt;HTML&lt;/label&gt;
+
+&lt;!-- Radio buttons (single) --&gt;
+&lt;input type="radio" id="yes" name="answer" value="yes"&gt;
+&lt;label for="yes"&gt;Yes&lt;/label&gt;
+&lt;input type="radio" id="no" name="answer" value="no"&gt;
+&lt;label for="no"&gt;No&lt;/label&gt;</code></pre>
+                        <p class="card-note">Same <code>name</code> groups radio buttons together.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Select Dropdown</h3>
+                        <pre><code>&lt;select name="country"&gt;
+    &lt;option value=""&gt;Select...&lt;/option&gt;
+    &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+    &lt;option value="us"&gt;United States&lt;/option&gt;
+    &lt;option value="fr"&gt;France&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                        <p class="card-note">Dropdown for selecting from predefined options.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Textarea</h3>
+                        <pre><code>&lt;textarea name="message" 
+          rows="4" 
+          cols="50" 
+          placeholder="Your message..."&gt;
+&lt;/textarea&gt;</code></pre>
+                        <p class="card-note">Multi-line text input for longer content.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Semantic Elements -->
+            <section class="cheat-section" id="semantic">
+                <h2>🏛️ Semantic Elements</h2>
+                <p class="section-desc">Elements that describe the meaning of content.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Page Layout</h3>
+                        <pre><code>&lt;header&gt;Site header, logo, navigation&lt;/header&gt;
+
+&lt;nav&gt;Navigation links&lt;/nav&gt;
+
+&lt;main&gt;Main content (one per page)&lt;/main&gt;
+
+&lt;aside&gt;Sidebar, related content&lt;/aside&gt;
+
+&lt;footer&gt;Footer, copyright, links&lt;/footer&gt;</code></pre>
+                        <p class="card-note">Semantic elements improve accessibility and SEO.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Content Sections</h3>
+                        <pre><code>&lt;article&gt;
+    Self-contained content like 
+    blog posts or news articles
+&lt;/article&gt;
+
+&lt;section&gt;
+    Thematic grouping of content
+&lt;/section&gt;</code></pre>
+                        <p class="card-note">Articles can be shared independently; sections group related content.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Other Semantic Elements</h3>
+                        <pre><code>&lt;time datetime="2024-12-25"&gt;
+    December 25, 2024
+&lt;/time&gt;
+
+&lt;address&gt;
+    Contact information
+&lt;/address&gt;
+
+&lt;details&gt;
+    &lt;summary&gt;Click to expand&lt;/summary&gt;
+    Hidden content here
+&lt;/details&gt;</code></pre>
+                        <p class="card-note">Specialized elements for specific types of content.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Meta Tags -->
+            <section class="cheat-section" id="meta">
+                <h2>🏷️ Meta Tags</h2>
+                <p class="section-desc">Page metadata for browsers and search engines.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Essential Meta Tags</h3>
+                        <pre><code>&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="description" content="Page description for SEO"&gt;
+&lt;meta name="keywords" content="html, css, web development"&gt;
+&lt;meta name="author" content="Your Name"&gt;</code></pre>
+                        <p class="card-note">Always include charset and viewport for proper rendering.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Open Graph (Social)</h3>
+                        <pre><code>&lt;meta property="og:title" content="Page Title"&gt;
+&lt;meta property="og:description" content="Description"&gt;
+&lt;meta property="og:image" content="image.jpg"&gt;
+&lt;meta property="og:url" content="https://..."&gt;</code></pre>
+                        <p class="card-note">Controls how pages appear when shared on social media.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Favicon</h3>
+                        <pre><code>&lt;link rel="icon" type="image/x-icon" 
+      href="/favicon.ico"&gt;
+
+&lt;link rel="apple-touch-icon" 
+      href="/apple-icon.png"&gt;</code></pre>
+                        <p class="card-note">The small icon shown in browser tabs.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Jonesys Code Dev © 2025 | Keep learning! 📚</p>
+        </div>
+    </footer>
+</body>
+
+</html>

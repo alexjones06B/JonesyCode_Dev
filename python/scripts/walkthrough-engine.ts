@@ -1,15 +1,114 @@
 /**
- * Walkthrough Engine - Core functionality for step-by-step typing exercises
- * This TypeScript file demonstrates key principles used throughout the project
+ * Python Walkthrough Engine - Core functionality with Pyodide integration
+ * This TypeScript file provides interactive Python code execution in the browser
  */
+
+// ============================================
+// PYODIDE INTEGRATION
+// ============================================
+
+/** Pyodide instance for running Python code */
+let pyodideInstance: any = null;
+let pyodideLoading: boolean = false;
+let pyodideReady: boolean = false;
+
+/**
+ * Initializes Pyodide for Python code execution
+ */
+async function initPyodide(): Promise<void> {
+    if (pyodideReady || pyodideLoading) return;
+
+    pyodideLoading = true;
+    const statusEl = document.getElementById('pyodideStatus');
+
+    try {
+        if (statusEl) {
+            statusEl.textContent = '🐍 Loading Python interpreter...';
+            statusEl.className = 'pyodide-status loading';
+        }
+
+        // @ts-ignore - loadPyodide is loaded via CDN script tag
+        pyodideInstance = await window.loadPyodide();
+        pyodideReady = true;
+        // @ts-ignore - Store on window for global access
+        window.pyodide = pyodideInstance;
+
+        if (statusEl) {
+            statusEl.textContent = '✅ Python ready!';
+            statusEl.className = 'pyodide-status ready';
+            // Hide after 2 seconds
+            setTimeout(() => {
+                statusEl.style.opacity = '0.5';
+            }, 2000);
+        }
+    } catch (error) {
+        console.error('Failed to load Pyodide:', error);
+        if (statusEl) {
+            statusEl.textContent = '❌ Failed to load Python. Refresh to retry.';
+            statusEl.className = 'pyodide-status error';
+        }
+    } finally {
+        pyodideLoading = false;
+    }
+}
+
+/**
+ * Runs Python code and returns the output
+ */
+async function runPythonCode(code: string): Promise<{ output: string; error: string | null }> {
+    if (!pyodideReady) {
+        return { output: '', error: 'Python interpreter not loaded yet. Please wait...' };
+    }
+
+    try {
+        // Capture stdout
+        pyodideInstance.runPython(`
+import sys
+from io import StringIO
+_stdout_capture = StringIO()
+_stderr_capture = StringIO()
+sys.stdout = _stdout_capture
+sys.stderr = _stderr_capture
+`);
+
+        // Run the user's code
+        let result = pyodideInstance.runPython(code);
+
+        // Get captured output
+        const stdout = pyodideInstance.runPython('_stdout_capture.getvalue()');
+        const stderr = pyodideInstance.runPython('_stderr_capture.getvalue()');
+
+        // Reset stdout/stderr
+        pyodideInstance.runPython(`
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`);
+
+        let output = stdout || '';
+        if (result !== undefined && result !== null && String(result) !== 'None') {
+            if (output) output += '\n';
+            output += String(result);
+        }
+
+        return { output: output.trim(), error: stderr || null };
+    } catch (error: any) {
+        // Reset stdout/stderr on error
+        try {
+            pyodideInstance.runPython(`
+import sys
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`);
+        } catch (e) { }
+
+        return { output: '', error: error.message || String(error) };
+    }
+}
 
 // ============================================
 // STORAGE HELPER FUNCTIONS (localStorage)
 // ============================================
 
-/**
- * Saves a value to localStorage
- */
 function setStorage(name: string, value: string): void {
     try {
         localStorage.setItem(name, value);
@@ -18,9 +117,6 @@ function setStorage(name: string, value: string): void {
     }
 }
 
-/**
- * Gets a value from localStorage
- */
 function getStorage(name: string): string | null {
     try {
         return localStorage.getItem(name);
@@ -30,9 +126,6 @@ function getStorage(name: string): string | null {
     }
 }
 
-/**
- * Removes a value from localStorage
- */
 function removeStorage(name: string): void {
     try {
         localStorage.removeItem(name);
@@ -55,16 +148,14 @@ function deleteCookie(name: string): void {
 }
 
 // ============================================
-// TYPE DEFINITIONS (Interfaces & Types)
+// TYPE DEFINITIONS
 // ============================================
 
-/** Represents a single code breakdown item explaining part of the code */
 interface CodePart {
     code: string;
     explanation: string;
 }
 
-/** Represents a single step in a walkthrough exercise */
 interface WalkthroughStep {
     id: number;
     title: string;
@@ -74,13 +165,12 @@ interface WalkthroughStep {
     codeBreakdown: CodePart[];
     tip: string;
     hint: string;
-    /** What this code outputs when run */
     output?: string;
-    /** More detailed explanation of what the code does */
     detailedExplanation?: string;
+    /** If true, this step's code will be run with Pyodide */
+    runnable?: boolean;
 }
 
-/** Progress tracking for a walkthrough */
 interface WalkthroughProgress {
     walkthroughId: string;
     currentStep: number;
@@ -89,7 +179,6 @@ interface WalkthroughProgress {
     completedAt?: string;
 }
 
-/** Configuration for a walkthrough */
 interface WalkthroughConfig {
     id: string;
     title: string;
@@ -100,20 +189,12 @@ interface WalkthroughConfig {
 // WALKTHROUGH ENGINE CLASS
 // ============================================
 
-/**
- * WalkthroughEngine - Manages the interactive typing exercise experience
- * Demonstrates: Classes, Access Modifiers, Type Annotations, Generics
- */
 class WalkthroughEngine {
-    // Private properties - only accessible within this class
     private config: WalkthroughConfig;
     private currentStepIndex: number = 0;
     private progress: WalkthroughProgress;
-
-    // Readonly property - can only be set in constructor
     private readonly STORAGE_KEY_PREFIX: string = 'walkthrough-progress-';
 
-    // DOM element references
     private elements: {
         codeInput: HTMLTextAreaElement;
         feedback: HTMLElement;
@@ -131,16 +212,15 @@ class WalkthroughEngine {
         prevBtn: HTMLButtonElement;
         nextBtn: HTMLButtonElement;
         hintBtn: HTMLButtonElement;
+        runBtn: HTMLButtonElement | null;
         completionModal: HTMLElement;
         outputSection: HTMLElement | null;
         outputContent: HTMLElement | null;
         detailedExplanation: HTMLElement | null;
+        terminalOutput: HTMLElement | null;
+        terminalSection: HTMLElement | null;
     };
 
-    /**
-     * Constructor - initializes the walkthrough engine
-     * @param config - The walkthrough configuration with all steps
-     */
     constructor(config: WalkthroughConfig) {
         this.config = config;
         this.elements = this.getElements();
@@ -150,10 +230,6 @@ class WalkthroughEngine {
         this.init();
     }
 
-    /**
-     * Gets all required DOM elements
-     * Demonstrates: Type assertions, Object types
-     */
     private getElements(): typeof this.elements {
         return {
             codeInput: document.getElementById('codeInput') as HTMLTextAreaElement,
@@ -172,100 +248,131 @@ class WalkthroughEngine {
             prevBtn: document.getElementById('prevBtn') as HTMLButtonElement,
             nextBtn: document.getElementById('nextBtn') as HTMLButtonElement,
             hintBtn: document.getElementById('hintBtn') as HTMLButtonElement,
+            runBtn: document.getElementById('runBtn') as HTMLButtonElement | null,
             completionModal: document.getElementById('completionModal') as HTMLElement,
             outputSection: document.getElementById('outputSection'),
             outputContent: document.getElementById('outputContent'),
-            detailedExplanation: document.getElementById('detailedExplanation')
+            detailedExplanation: document.getElementById('detailedExplanation'),
+            terminalOutput: document.getElementById('terminalOutput'),
+            terminalSection: document.getElementById('terminalSection')
         };
     }
 
-    /**
-     * Initializes the walkthrough engine
-     * Demonstrates: void return type
-     */
     private init(): void {
         this.setupEventListeners();
         this.renderStep(this.currentStepIndex);
         this.updateProgress();
+
+        // Initialize Pyodide
+        initPyodide();
     }
 
-    /**
-     * Sets up all event listeners
-     * Demonstrates: Arrow functions, Event handling
-     */
     private setupEventListeners(): void {
-        // Input event for real-time code checking
         this.elements.codeInput.addEventListener('input', () => {
             this.checkCode();
             this.updateLineNumbers();
         });
 
-        // Navigation buttons
         this.elements.prevBtn.addEventListener('click', () => this.goToPreviousStep());
         this.elements.nextBtn.addEventListener('click', () => this.goToNextStep());
         this.elements.hintBtn.addEventListener('click', () => this.showHint());
 
-        // Tab key handling for indentation
+        // Run button for Python execution
+        if (this.elements.runBtn) {
+            this.elements.runBtn.addEventListener('click', () => this.runCode());
+        }
+
         this.elements.codeInput.addEventListener('keydown', (e: KeyboardEvent) => {
             if (e.key === 'Tab') {
                 e.preventDefault();
                 this.insertTab();
             }
+            // Ctrl/Cmd + Enter to run code
+            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                this.runCode();
+            }
         });
     }
 
     /**
-     * Renders a specific step
-     * Demonstrates: Array indexing, Template literals, DOM manipulation
+     * Runs the current code with Pyodide
      */
+    private async runCode(): Promise<void> {
+        const code = this.elements.codeInput.value;
+
+        if (!code.trim()) {
+            this.showTerminalOutput('# Enter some code to run');
+            return;
+        }
+
+        if (!pyodideReady) {
+            this.showTerminalOutput('⏳ Python is still loading. Please wait...');
+            return;
+        }
+
+        this.showTerminalOutput('▶ Running...');
+
+        const result = await runPythonCode(code);
+
+        if (result.error) {
+            this.showTerminalOutput(`❌ Error:\n${result.error}`, true);
+        } else {
+            const output = result.output || '(No output)';
+            this.showTerminalOutput(`>>> ${code.split('\n')[0]}${code.includes('\n') ? '\n...' : ''}\n${output}`);
+        }
+    }
+
+    /**
+     * Shows output in the terminal section
+     */
+    private showTerminalOutput(text: string, isError: boolean = false): void {
+        if (this.elements.terminalSection) {
+            this.elements.terminalSection.style.display = 'block';
+        }
+        if (this.elements.terminalOutput) {
+            this.elements.terminalOutput.textContent = text;
+            this.elements.terminalOutput.className = isError ? 'terminal-error' : '';
+        }
+    }
+
     private renderStep(stepIndex: number): void {
         const step = this.config.steps[stepIndex];
         if (!step) return;
 
-        // Update step indicator
         this.elements.stepBadge.textContent = `Step ${step.id}`;
         this.elements.stepTitle.textContent = step.title;
         this.elements.currentStep.textContent = step.id.toString();
         this.elements.totalSteps.textContent = this.config.steps.length.toString();
 
-        // Update instruction content
         this.elements.instructionTitle.textContent = step.instructionTitle;
         this.elements.instructionDesc.innerHTML = `<p>${step.description}</p>`;
 
-        // Render code breakdown
         this.renderCodeBreakdown(step.codeBreakdown);
-
-        // Update expected code
         this.elements.expectedCode.textContent = step.expectedCode;
-
-        // Update tip
         this.elements.tipText.textContent = step.tip;
 
-        // Update output section if present
         this.renderOutput(step.output);
-
-        // Update detailed explanation if present
         this.renderDetailedExplanation(step.detailedExplanation);
 
-        // Clear input and reset feedback
+        // Show/hide run button and terminal based on runnable flag
+        if (this.elements.runBtn) {
+            this.elements.runBtn.style.display = step.runnable !== false ? 'inline-flex' : 'none';
+        }
+        if (this.elements.terminalSection) {
+            this.elements.terminalSection.style.display = 'none';
+        }
+
         this.elements.codeInput.value = '';
         this.setFeedback('waiting', '⌨️ Start typing to begin...');
 
-        // Update navigation buttons
         this.elements.prevBtn.disabled = stepIndex === 0;
         this.elements.nextBtn.disabled = true;
 
-        // Update line numbers
         this.updateLineNumbers();
-
-        // Focus the input
         this.elements.codeInput.focus();
     }
 
-    /**
-     * Renders the code breakdown section
-     * Demonstrates: forEach, Template literals, innerHTML
-     */
     private renderCodeBreakdown(breakdown: CodePart[]): void {
         let html = '';
         breakdown.forEach((part: CodePart) => {
@@ -279,9 +386,6 @@ class WalkthroughEngine {
         this.elements.breakdownContent.innerHTML = html;
     }
 
-    /**
-     * Renders the output section showing what the code produces
-     */
     private renderOutput(output?: string): void {
         if (!this.elements.outputSection || !this.elements.outputContent) return;
 
@@ -293,9 +397,6 @@ class WalkthroughEngine {
         }
     }
 
-    /**
-     * Renders the detailed explanation section
-     */
     private renderDetailedExplanation(explanation?: string): void {
         if (!this.elements.detailedExplanation) return;
 
@@ -307,10 +408,6 @@ class WalkthroughEngine {
         }
     }
 
-    /**
-     * Checks if the typed code matches the expected code
-     * Demonstrates: String methods, Conditional logic
-     */
     private checkCode(): void {
         const currentStep = this.config.steps[this.currentStepIndex];
         const userCode = this.elements.codeInput.value.trim();
@@ -322,12 +419,11 @@ class WalkthroughEngine {
             return;
         }
 
-        // Check if code matches (allowing for minor whitespace differences)
         const normalizedUser = this.normalizeCode(userCode);
         const normalizedExpected = this.normalizeCode(expectedCode);
 
         if (normalizedUser === normalizedExpected) {
-            this.setFeedback('success', '✅ Perfect! Your code is correct!');
+            this.setFeedback('success', '✅ Perfect! Your code is correct! Press ▶ Run to see it execute.');
             this.elements.nextBtn.disabled = false;
             this.markStepComplete(this.currentStepIndex);
         } else if (normalizedExpected.startsWith(normalizedUser)) {
@@ -339,38 +435,24 @@ class WalkthroughEngine {
         }
     }
 
-    /**
-     * Normalizes code for comparison
-     * Demonstrates: Regular expressions, String methods
-     */
     private normalizeCode(code: string): string {
         return code
-            .replace(/\s+/g, ' ')  // Collapse whitespace
-            .replace(/\s*([{}():;,=])\s*/g, '$1')  // Remove spaces around punctuation
+            .replace(/\s+/g, ' ')
+            .replace(/\s*([{}():;,=\[\]])\s*/g, '$1')
             .toLowerCase()
             .trim();
     }
 
-    /**
-     * Sets the feedback message with appropriate styling
-     * Demonstrates: Union types (via CSS class), Template literals
-     */
     private setFeedback(type: 'success' | 'error' | 'hint' | 'waiting', message: string): void {
         this.elements.feedback.className = `feedback ${type}`;
         this.elements.feedback.textContent = message;
     }
 
-    /**
-     * Shows a hint for the current step
-     */
     private showHint(): void {
         const currentStep = this.config.steps[this.currentStepIndex];
         alert(`💡 Hint: ${currentStep.hint}`);
     }
 
-    /**
-     * Goes to the previous step
-     */
     private goToPreviousStep(): void {
         if (this.currentStepIndex > 0) {
             this.currentStepIndex--;
@@ -381,9 +463,6 @@ class WalkthroughEngine {
         }
     }
 
-    /**
-     * Goes to the next step
-     */
     private goToNextStep(): void {
         if (this.currentStepIndex < this.config.steps.length - 1) {
             this.currentStepIndex++;
@@ -392,15 +471,10 @@ class WalkthroughEngine {
             this.renderStep(this.currentStepIndex);
             this.updateProgress();
         } else {
-            // Walkthrough complete
             this.showCompletionModal();
         }
     }
 
-    /**
-     * Marks a step as complete
-     * Demonstrates: Array methods (includes, push)
-     */
     private markStepComplete(stepIndex: number): void {
         if (!this.progress.completedSteps.includes(stepIndex)) {
             this.progress.completedSteps.push(stepIndex);
@@ -409,17 +483,11 @@ class WalkthroughEngine {
         }
     }
 
-    /**
-     * Updates the progress bar
-     */
     private updateProgress(): void {
         const percentage = (this.progress.completedSteps.length / this.config.steps.length) * 100;
         this.elements.progressFill.style.width = `${percentage}%`;
     }
 
-    /**
-     * Updates line numbers in the editor
-     */
     private updateLineNumbers(): void {
         const lines = this.elements.codeInput.value.split('\n').length;
         let lineNumbersHtml = '';
@@ -429,9 +497,6 @@ class WalkthroughEngine {
         this.elements.lineNumbers.textContent = lineNumbersHtml.trim();
     }
 
-    /**
-     * Inserts a tab character at cursor position
-     */
     private insertTab(): void {
         const input = this.elements.codeInput;
         const start = input.selectionStart;
@@ -442,28 +507,18 @@ class WalkthroughEngine {
         input.selectionStart = input.selectionEnd = start + 4;
     }
 
-    /**
-     * Escapes HTML special characters
-     */
     private escapeHtml(text: string): string {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
 
-    /**
-     * Shows the completion modal
-     */
     private showCompletionModal(): void {
         this.progress.completedAt = new Date().toISOString();
         this.saveProgress();
         this.elements.completionModal.classList.add('show');
     }
 
-    /**
-     * Loads progress from cookies
-     * Demonstrates: JSON parsing, Type guards, Default values
-     */
     private loadProgress(): WalkthroughProgress {
         const key = this.STORAGE_KEY_PREFIX + this.config.id;
         const saved = getCookie(key);
@@ -476,7 +531,6 @@ class WalkthroughEngine {
             }
         }
 
-        // Return default progress
         return {
             walkthroughId: this.config.id,
             currentStep: 0,
@@ -485,17 +539,11 @@ class WalkthroughEngine {
         };
     }
 
-    /**
-     * Saves progress to cookies (persists for 1 year)
-     */
     private saveProgress(): void {
         const key = this.STORAGE_KEY_PREFIX + this.config.id;
         setCookie(key, JSON.stringify(this.progress), 365);
     }
 
-    /**
-     * Resets the walkthrough progress
-     */
     public reset(): void {
         const key = this.STORAGE_KEY_PREFIX + this.config.id;
         deleteCookie(key);

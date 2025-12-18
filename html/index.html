@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Angular - Jonesys Code Dev</title>
+    <title>Jonesys Code Dev - Learn HTML</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
                 </button>
                 <div class="course-dropdown" id="courseDropdown">
                     <div class="dropdown-header">Switch Course</div>
-                    <a href="../html/index.html" class="course-link">
+                    <a href="../html/index.html" class="course-link active">
                         <span class="course-icon">🌐</span>
                         <span class="course-info">
                             <span class="course-name">HTML</span>
@@ -52,7 +52,7 @@
                             <span class="course-desc">Typed JavaScript</span>
                         </span>
                     </a>
-                    <a href="../angular/index.html" class="course-link active">
+                    <a href="../angular/index.html" class="course-link">
                         <span class="course-icon">🅰️</span>
                         <span class="course-info">
                             <span class="course-name">Angular</span>
@@ -71,7 +71,7 @@
 
             <div class="nav-stats">
                 <div class="stat-item">
-                    <span class="stat-value" id="totalExercises">24</span>
+                    <span class="stat-value" id="totalExercises">25</span>
                     <span class="stat-label">Exercises</span>
                 </div>
                 <div class="stat-item">
@@ -86,152 +86,51 @@
         <!-- Hero Section -->
         <header class="hero">
             <div class="hero-badge">Interactive Learning Platform</div>
-            <h1>Master <span class="highlight angular-highlight">Angular</span> by Building Real Apps</h1>
-            <p class="hero-subtitle">Learn Google's powerful web framework through hands-on exercises. Build components,
-                services, and full-featured applications.</p>
+            <h1>Master <span class="highlight">HTML</span> by Typing Real Code</h1>
+            <p class="hero-subtitle">Learn the foundation of the web through hands-on exercises. Type each line,
+                understand every element, and build real skills.</p>
 
             <div class="hero-features">
                 <div class="feature">
-                    <span class="feature-icon">🅰️</span>
-                    <span>Component-Based</span>
+                    <span class="feature-icon">⌨️</span>
+                    <span>Hands-on Practice</span>
                 </div>
                 <div class="feature">
-                    <span class="feature-icon">🔄</span>
-                    <span>Reactive Patterns</span>
+                    <span class="feature-icon">📖</span>
+                    <span>Step-by-Step Learning</span>
                 </div>
                 <div class="feature">
-                    <span class="feature-icon">💪</span>
-                    <span>TypeScript Powered</span>
+                    <span class="feature-icon">💾</span>
+                    <span>Progress Saved</span>
                 </div>
             </div>
         </header>
-
-        <!-- What is Angular Section -->
-        <section class="section framework-intro">
-            <div class="section-header">
-                <h2>🅰️ What is Angular?</h2>
-                <p>Understanding the framework before diving in</p>
-            </div>
-
-            <div class="intro-content">
-                <div class="intro-card main-intro">
-                    <h3>Angular is a Platform</h3>
-                    <p>Angular is a <strong>full-featured framework</strong> built and maintained by Google for creating
-                        dynamic, single-page web applications. Unlike libraries that only handle specific tasks, Angular
-                        provides everything you need out of the box:</p>
-                    <ul>
-                        <li><strong>Component Architecture</strong> - Build reusable UI building blocks</li>
-                        <li><strong>Dependency Injection</strong> - Manage services and data flow elegantly</li>
-                        <li><strong>Routing</strong> - Handle navigation between views</li>
-                        <li><strong>Forms</strong> - Template-driven and reactive form handling</li>
-                        <li><strong>HTTP Client</strong> - Communicate with backend APIs</li>
-                        <li><strong>Testing</strong> - Built-in testing utilities</li>
-                    </ul>
-                </div>
-
-                <div class="intro-cards-grid">
-                    <div class="intro-card">
-                        <span class="card-icon">📦</span>
-                        <h4>Opinionated Structure</h4>
-                        <p>Angular enforces consistent patterns across projects. This makes code predictable,
-                            maintainable, and easier for teams to work on together.</p>
-                    </div>
-
-                    <div class="intro-card">
-                        <span class="card-icon">🔷</span>
-                        <h4>TypeScript First</h4>
-                        <p>Angular is built with TypeScript and encourages its use. You get type safety, better tooling,
-                            autocompletion, and catch errors during development.</p>
-                    </div>
-
-                    <div class="intro-card">
-                        <span class="card-icon">🔌</span>
-                        <h4>Dependency Injection</h4>
-                        <p>A powerful system for managing services. Create once, inject anywhere. Makes testing easy and
-                            code decoupled.</p>
-                    </div>
-
-                    <div class="intro-card">
-                        <span class="card-icon">🔄</span>
-                        <h4>Reactive with RxJS</h4>
-                        <p>Angular embraces reactive programming with RxJS Observables. Handle async operations, events,
-                            and data streams elegantly.</p>
-                    </div>
-                </div>
-
-                <div class="intro-card comparison">
-                    <h4>Angular vs Other Frameworks</h4>
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Angular</th>
-                                <th>React</th>
-                                <th>Vue</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Type</td>
-                                <td>Full Framework</td>
-                                <td>Library</td>
-                                <td>Progressive Framework</td>
-                            </tr>
-                            <tr>
-                                <td>Language</td>
-                                <td>TypeScript</td>
-                                <td>JavaScript/JSX</td>
-                                <td>JavaScript</td>
-                            </tr>
-                            <tr>
-                                <td>Data Binding</td>
-                                <td>Two-way</td>
-                                <td>One-way</td>
-                                <td>Two-way</td>
-                            </tr>
-                            <tr>
-                                <td>Learning Curve</td>
-                                <td>Steeper</td>
-                                <td>Moderate</td>
-                                <td>Gentle</td>
-                            </tr>
-                            <tr>
-                                <td>Best For</td>
-                                <td>Enterprise Apps</td>
-                                <td>Flexible UIs</td>
-                                <td>Quick Start</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
 
         <!-- Learning Path Section -->
         <section class="section">
             <div class="section-header">
                 <h2>Learning Path</h2>
-                <p>Complete each module in order to master Angular fundamentals</p>
+                <p>Complete each module in order to build your HTML skills</p>
             </div>
 
             <div class="learning-path">
                 <div class="path-line"></div>
 
-                <a href="walkthroughs/angular-basics.html" class="path-card" data-step="1">
+                <a href="walkthroughs/html-basics.html" class="path-card" data-step="1">
                     <div class="path-step">1</div>
                     <div class="path-content">
                         <div class="path-header">
-                            <span class="path-icon">🅰️</span>
+                            <span class="path-icon">📄</span>
                             <span class="difficulty beginner">Beginner</span>
                         </div>
-                        <h3>Angular Basics</h3>
-                        <p>Project structure, modules, and Angular CLI</p>
+                        <h3>HTML Basics</h3>
+                        <p>Document structure, elements, and fundamental syntax</p>
                         <div class="path-meta">
                             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <circle cx="12" cy="12" r="10" />
                                     <path d="M12 6v6l4 2" />
-                                </svg> 30 mins</span>
+                                </svg> 25 mins</span>
                             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -248,92 +147,23 @@
                             <span>0% complete</span>
                         </div>
                     </div>
-                    <div class="path-arrow">→</div>
                 </a>
 
-                <a href="walkthroughs/angular-components.html" class="path-card" data-step="2">
+                <a href="walkthroughs/html-text.html" class="path-card" data-step="2">
                     <div class="path-step">2</div>
                     <div class="path-content">
                         <div class="path-header">
-                            <span class="path-icon">🧱</span>
+                            <span class="path-icon">📝</span>
                             <span class="difficulty beginner">Beginner</span>
                         </div>
-                        <h3>Components</h3>
-                        <p>Building blocks of Angular applications</p>
+                        <h3>Text & Typography</h3>
+                        <p>Headings, paragraphs, formatting, and text elements</p>
                         <div class="path-meta">
                             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <circle cx="12" cy="12" r="10" />
                                     <path d="M12 6v6l4 2" />
-                                </svg> 35 mins</span>
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                    <path d="M14 2v6h6" />
-                                    <path d="M16 13H8" />
-                                    <path d="M16 17H8" />
-                                    <path d="M10 9H8" />
-                                </svg> 7 exercises</span>
-                        </div>
-                        <div class="path-progress">
-                            <div class="progress-bar-mini">
-                                <div class="progress-fill-mini" style="width: 0%"></div>
-                            </div>
-                            <span>0% complete</span>
-                        </div>
-                    </div>
-                    <div class="path-arrow">→</div>
-                </a>
-
-                <a href="walkthroughs/angular-templates.html" class="path-card" data-step="3">
-                    <div class="path-step">3</div>
-                    <div class="path-content">
-                        <div class="path-header">
-                            <span class="path-icon">📄</span>
-                            <span class="difficulty intermediate">Intermediate</span>
-                        </div>
-                        <h3>Templates & Data Binding</h3>
-                        <p>Interpolation, property binding, events</p>
-                        <div class="path-meta">
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M12 6v6l4 2" />
-                                </svg> 30 mins</span>
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                    <path d="M14 2v6h6" />
-                                    <path d="M16 13H8" />
-                                    <path d="M16 17H8" />
-                                    <path d="M10 9H8" />
-                                </svg> 6 exercises</span>
-                        </div>
-                        <div class="path-progress">
-                            <div class="progress-bar-mini">
-                                <div class="progress-fill-mini" style="width: 0%"></div>
-                            </div>
-                            <span>0% complete</span>
-                        </div>
-                    </div>
-                    <div class="path-arrow">→</div>
-                </a>
-
-                <a href="walkthroughs/angular-services.html" class="path-card" data-step="4">
-                    <div class="path-step">4</div>
-                    <div class="path-content">
-                        <div class="path-header">
-                            <span class="path-icon">⚙️</span>
-                            <span class="difficulty intermediate">Intermediate</span>
-                        </div>
-                        <h3>Services & Dependency Injection</h3>
-                        <p>Sharing data and logic across components</p>
-                        <div class="path-meta">
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M12 6v6l4 2" />
-                                </svg> 35 mins</span>
+                                </svg> 20 mins</span>
                             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -350,89 +180,138 @@
                             <span>0% complete</span>
                         </div>
                     </div>
-                    <div class="path-arrow">🏆</div>
                 </a>
-            </div>
-        </section>
 
-        <!-- Resources Section -->
-        <section class="section resources-section">
-            <div class="section-header">
-                <h2>📚 Resources</h2>
-                <p>Quick references to help you while learning</p>
-            </div>
-
-            <div class="resources-grid">
-                <a href="cheatsheet.html" class="resource-card">
-                    <div class="resource-icon">🅰️</div>
-                    <div class="resource-content">
-                        <h3>Angular Cheat Sheet</h3>
-                        <p>Quick reference for Angular decorators, directives, lifecycle hooks, and common patterns.
-                            Bookmark it!</p>
-                        <span class="resource-cta">View Cheat Sheet →</span>
+                <a href="walkthroughs/html-links-images.html" class="path-card" data-step="3">
+                    <div class="path-step">3</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">🔗</span>
+                            <span class="difficulty beginner">Beginner</span>
+                        </div>
+                        <h3>Links & Images</h3>
+                        <p>Anchor tags, image elements, and attributes</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 25 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 5 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="../typescript/index.html" class="resource-card">
-                    <div class="resource-icon">📘</div>
-                    <div class="resource-content">
-                        <h3>TypeScript Course</h3>
-                        <p>Angular uses TypeScript. Make sure you're comfortable with types, interfaces, and classes
-                            first.</p>
-                        <span class="resource-cta">Learn TypeScript →</span>
+                <a href="walkthroughs/html-lists.html" class="path-card" data-step="4">
+                    <div class="path-step">4</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">📋</span>
+                            <span class="difficulty intermediate">Intermediate</span>
+                        </div>
+                        <h3>Lists</h3>
+                        <p>Ordered, unordered, and description lists</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 20 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 4 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="walkthroughs/html-forms.html" class="path-card" data-step="5">
+                    <div class="path-step">5</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">📮</span>
+                            <span class="difficulty intermediate">Intermediate</span>
+                        </div>
+                        <h3>Forms & Inputs</h3>
+                        <p>Form elements, input types, and form handling</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 30 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 5 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
                     </div>
                 </a>
             </div>
         </section>
 
-        <!-- Prerequisites Section -->
-        <section class="section prereq-section">
+        <!-- Quick Reference Section -->
+        <section class="section">
             <div class="section-header">
-                <h2>📋 Prerequisites</h2>
-                <p>What you should know before starting</p>
+                <h2>Quick Reference</h2>
+                <p>Need a refresher? Check out our cheat sheet</p>
             </div>
 
-            <div class="prereq-grid">
-                <div class="prereq-card">
-                    <span class="prereq-icon">✅</span>
-                    <h4>HTML & CSS</h4>
-                    <p>Basic understanding of markup and styling</p>
+            <a href="cheatsheet.html" class="cheatsheet-card">
+                <div class="cheatsheet-icon">📖</div>
+                <div class="cheatsheet-content">
+                    <h3>HTML Cheat Sheet</h3>
+                    <p>Quick reference for all HTML elements, attributes, and common patterns</p>
                 </div>
-                <div class="prereq-card">
-                    <span class="prereq-icon">✅</span>
-                    <h4>JavaScript Basics</h4>
-                    <p>Variables, functions, arrays, objects</p>
-                </div>
-                <div class="prereq-card">
-                    <span class="prereq-icon">✅</span>
-                    <h4>TypeScript Fundamentals</h4>
-                    <p>Types, interfaces, classes (complete our TypeScript course!)</p>
-                </div>
-                <div class="prereq-card">
-                    <span class="prereq-icon">✅</span>
-                    <h4>Node.js Installed</h4>
-                    <p>Required for Angular CLI and npm packages</p>
-                </div>
-            </div>
+                <span class="cheatsheet-arrow">→</span>
+            </a>
         </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="brand-icon">⚡</span>
-                    <span>Jonesys<span class="brand-accent">Code Dev</span></span>
-                </div>
-                <p>Build real skills through hands-on practice</p>
-                <div class="footer-links">
-                    <a href="../html/index.html">HTML Course</a>
-                    <a href="../typescript/index.html">TypeScript Course</a>
-                    <span>© 2025 Jonesys Code Dev</span>
-                </div>
-            </div>
-        </footer>
     </div>
 
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="../typescript/index.html">TypeScript Course</a>
+                <a href="../angular/index.html">Angular Course</a>
+            </div>
+            <p>Jonesys Code Dev © 2025 | Learn by doing 💪</p>
+        </div>
+    </footer>
+
+    <script src="scripts/html-basics.js"></script>
     <script>
         // Storage helper function (uses localStorage)
         function getStorage(name) {
@@ -446,14 +325,14 @@
         // Progress tracking display using localStorage
         document.addEventListener('DOMContentLoaded', () => {
             let totalCompleted = 0;
-            const walkthroughs = ['angular-basics', 'angular-components', 'angular-templates', 'angular-services'];
+            const walkthroughs = ['html-basics', 'html-text', 'html-lists', 'html-links-images', 'html-forms'];
 
             walkthroughs.forEach((id, index) => {
                 const saved = getStorage('walkthrough-progress-' + id);
                 if (saved) {
                     try {
                         const progress = JSON.parse(saved);
-                        const steps = [6, 7, 6, 5]; // exercises per walkthrough
+                        const steps = [6, 5, 4, 5, 5]; // exercises per walkthrough
                         const completed = progress.completedSteps ? progress.completedSteps.length : 0;
                         const percentage = Math.round((completed / steps[index]) * 100);
 

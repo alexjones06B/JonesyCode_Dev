@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Cheat Sheet - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cheatsheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">Jonesys<span class="brand-accent">Code Dev</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to Courses</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="cheatsheet-hero">
+            <div class="hero-badge">Quick Reference Guide</div>
+            <h1>🐍 Python <span class="highlight">Cheat Sheet</span></h1>
+            <p class="hero-subtitle">Your go-to reference for Python syntax, data types, and patterns. Bookmark this
+                page!</p>
+        </header>
+
+        <!-- Quick Navigation -->
+        <nav class="quick-nav">
+            <a href="#basics">Basics</a>
+            <a href="#strings">Strings</a>
+            <a href="#numbers">Numbers</a>
+            <a href="#lists">Lists</a>
+            <a href="#dictionaries">Dictionaries</a>
+            <a href="#control-flow">Control Flow</a>
+            <a href="#functions">Functions</a>
+            <a href="#comprehensions">Comprehensions</a>
+            <a href="#file-io">File I/O</a>
+            <a href="#classes">Classes</a>
+        </nav>
+
+        <!-- Cheat Sheet Sections -->
+        <main class="cheatsheet-content">
+
+            <!-- Basics -->
+            <section class="cheat-section" id="basics">
+                <h2>🎯 Basics</h2>
+                <p class="section-desc">Fundamental Python syntax and concepts.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Print Output</h3>
+                        <pre><code>print("Hello, World!")
+print("Name:", name)
+print(f"Hello, {name}!")</code></pre>
+                        <p class="card-note">Display output to the console.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Variables</h3>
+                        <pre><code>name = "Alex"        # String
+age = 25             # Integer
+price = 19.99        # Float
+is_active = True     # Boolean</code></pre>
+                        <p class="card-note">No type declaration needed. Python infers types.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Comments</h3>
+                        <pre><code># This is a single-line comment
+
+"""
+This is a
+multi-line comment
+(docstring)
+"""</code></pre>
+                        <p class="card-note">Use # for single line, triple quotes for multi-line.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>User Input</h3>
+                        <pre><code>name = input("Enter name: ")
+age = int(input("Enter age: "))</code></pre>
+                        <p class="card-note">input() always returns a string. Convert as needed.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Type Checking</h3>
+                        <pre><code>type(42)          # <class 'int'>
+type("hello")     # <class 'str'>
+isinstance(42, int)  # True</code></pre>
+                        <p class="card-note">Check types with type() or isinstance().</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Type Conversion</h3>
+                        <pre><code>int("42")     # String to int → 42
+str(42)       # Int to string → "42"
+float("3.14") # String to float → 3.14
+list("abc")   # String to list → ['a','b','c']</code></pre>
+                        <p class="card-note">Convert between types with built-in functions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Strings -->
+            <section class="cheat-section" id="strings">
+                <h2>📝 Strings</h2>
+                <p class="section-desc">Text manipulation and formatting.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>String Creation</h3>
+                        <pre><code>single = 'Hello'
+double = "World"
+multi = """Multiple
+lines"""
+raw = r"C:\new\folder"  # Raw string</code></pre>
+                        <p class="card-note">Use single or double quotes. Triple quotes for multi-line.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>F-Strings (Formatting)</h3>
+                        <pre><code>name = "Alex"
+age = 25
+f"Hello, {name}!"
+f"Next year: {age + 1}"
+f"Price: ${price:.2f}"</code></pre>
+                        <p class="card-note">Modern way to format strings. Use f prefix.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>String Methods</h3>
+                        <pre><code>s = "Hello World"
+s.upper()       # "HELLO WORLD"
+s.lower()       # "hello world"
+s.strip()       # Remove whitespace
+s.split(" ")    # ["Hello", "World"]
+s.replace("l", "x")  # "Hexxo Worxd"</code></pre>
+                        <p class="card-note">Strings are immutable - methods return new strings.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>String Slicing</h3>
+                        <pre><code>s = "Python"
+s[0]      # 'P' (first char)
+s[-1]     # 'n' (last char)
+s[0:2]    # 'Py'
+s[2:]     # 'thon'
+s[::-1]   # 'nohtyP' (reversed)</code></pre>
+                        <p class="card-note">Access characters and substrings by index.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>String Checks</h3>
+                        <pre><code>s.startswith("Py")  # True
+s.endswith(".py")   # False
+s.isdigit()         # False
+s.isalpha()         # True
+"th" in s           # True</code></pre>
+                        <p class="card-note">Boolean methods for string validation.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Join & Split</h3>
+                        <pre><code>words = ["Hello", "World"]
+" ".join(words)  # "Hello World"
+
+text = "a,b,c"
+text.split(",")  # ["a", "b", "c"]</code></pre>
+                        <p class="card-note">Convert between strings and lists.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Numbers -->
+            <section class="cheat-section" id="numbers">
+                <h2>🔢 Numbers</h2>
+                <p class="section-desc">Numeric types and mathematical operations.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Number Types</h3>
+                        <pre><code>integer = 42
+float_num = 3.14
+complex_num = 3 + 4j
+big_num = 1_000_000  # Readable</code></pre>
+                        <p class="card-note">Python has int, float, and complex number types.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Arithmetic Operators</h3>
+                        <pre><code>5 + 3    # 8  (add)
+5 - 3    # 2  (subtract)
+5 * 3    # 15 (multiply)
+5 / 3    # 1.666... (divide)
+5 // 3   # 1  (floor divide)
+5 % 3    # 2  (modulo/remainder)
+5 ** 3   # 125 (power)</code></pre>
+                        <p class="card-note">Standard math operators plus floor division and power.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Assignment Operators</h3>
+                        <pre><code>x = 5
+x += 3   # x = x + 3 → 8
+x -= 2   # x = x - 2 → 6
+x *= 2   # x = x * 2 → 12
+x /= 3   # x = x / 3 → 4.0</code></pre>
+                        <p class="card-note">Shorthand for modify-and-assign.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Math Functions</h3>
+                        <pre><code>abs(-5)      # 5
+round(3.7)   # 4
+min(1, 2, 3) # 1
+max(1, 2, 3) # 3
+sum([1,2,3]) # 6
+
+import math
+math.sqrt(16)    # 4.0
+math.floor(3.7)  # 3
+math.ceil(3.2)   # 4</code></pre>
+                        <p class="card-note">Built-in and math module functions.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Comparison Operators</h3>
+                        <pre><code>5 == 5   # True (equal)
+5 != 3   # True (not equal)
+5 > 3    # True
+5 < 3    # False
+5 >= 5   # True
+5 <= 3   # False</code></pre>
+                        <p class="card-note">Compare values, returns boolean.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Random Numbers</h3>
+                        <pre><code>import random
+
+random.random()        # 0.0 to 1.0
+random.randint(1, 10)  # 1 to 10
+random.choice([1,2,3]) # Pick one
+random.shuffle(mylist) # Shuffle in-place</code></pre>
+                        <p class="card-note">Generate random numbers and selections.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lists -->
+            <section class="cheat-section" id="lists">
+                <h2>📋 Lists</h2>
+                <p class="section-desc">Ordered, mutable sequences of items.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Creating Lists</h3>
+                        <pre><code>empty = []
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, "two", 3.0, True]
+nested = [[1, 2], [3, 4]]
+from_range = list(range(5))</code></pre>
+                        <p class="card-note">Lists can contain any types, including other lists.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Accessing Items</h3>
+                        <pre><code>nums = [10, 20, 30, 40, 50]
+nums[0]     # 10 (first)
+nums[-1]    # 50 (last)
+nums[1:3]   # [20, 30]
+nums[::2]   # [10, 30, 50] (every 2nd)</code></pre>
+                        <p class="card-note">Zero-indexed. Negative indexes count from end.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Modifying Lists</h3>
+                        <pre><code>nums = [1, 2, 3]
+nums.append(4)      # [1,2,3,4]
+nums.insert(0, 0)   # [0,1,2,3,4]
+nums.extend([5,6])  # [0,1,2,3,4,5,6]
+nums[0] = 99        # Change first item
+nums.remove(99)     # Remove by value
+del nums[0]         # Remove by index</code></pre>
+                        <p class="card-note">Lists are mutable - can be modified in-place.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>List Methods</h3>
+                        <pre><code>nums = [3, 1, 4, 1, 5]
+nums.sort()         # [1,1,3,4,5]
+nums.reverse()      # [5,4,3,1,1]
+nums.pop()          # Remove & return last
+nums.count(1)       # 2 (occurrences)
+nums.index(4)       # Find position
+len(nums)           # Length</code></pre>
+                        <p class="card-note">Common list operations and methods.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>List Operations</h3>
+                        <pre><code>[1, 2] + [3, 4]  # [1,2,3,4] concat
+[1, 2] * 3       # [1,2,1,2,1,2]
+3 in [1, 2, 3]   # True
+3 not in [1, 2]  # True</code></pre>
+                        <p class="card-note">Concatenate, repeat, and check membership.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Copying Lists</h3>
+                        <pre><code>original = [1, 2, 3]
+# Shallow copies:
+copy1 = original.copy()
+copy2 = list(original)
+copy3 = original[:]
+
+# Deep copy (nested):
+import copy
+deep = copy.deepcopy(nested)</code></pre>
+                        <p class="card-note warning">⚠️ Assignment (=) creates reference, not copy!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dictionaries -->
+            <section class="cheat-section" id="dictionaries">
+                <h2>📖 Dictionaries</h2>
+                <p class="section-desc">Key-value pairs for fast lookups.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Creating Dictionaries</h3>
+                        <pre><code>empty = {}
+person = {
+    "name": "Alex",
+    "age": 25,
+    "city": "London"
+}
+from_pairs = dict([("a", 1), ("b", 2)])</code></pre>
+                        <p class="card-note">Keys must be immutable (strings, numbers, tuples).</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Accessing Values</h3>
+                        <pre><code>person["name"]       # "Alex"
+person.get("name")   # "Alex"
+person.get("job", "N/A")  # With default
+
+# Safe - returns None if missing:
+person.get("missing")  # None
+# Unsafe - raises KeyError:
+person["missing"]  # KeyError!</code></pre>
+                        <p class="card-note">Use .get() for safe access with optional default.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Modifying Dictionaries</h3>
+                        <pre><code>person["age"] = 26        # Update
+person["job"] = "Dev"     # Add new
+del person["city"]        # Delete
+person.pop("job")         # Remove & return
+person.update({"a": 1})   # Merge</code></pre>
+                        <p class="card-note">Dictionaries are mutable.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Dictionary Methods</h3>
+                        <pre><code>person.keys()    # dict_keys([...])
+person.values()  # dict_values([...])
+person.items()   # dict_items([...])
+len(person)      # Number of pairs
+"name" in person # True</code></pre>
+                        <p class="card-note">Iterate over keys, values, or both.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Iterating</h3>
+                        <pre><code># Keys only
+for key in person:
+    print(key)
+
+# Keys and values
+for key, value in person.items():
+    print(f"{key}: {value}")</code></pre>
+                        <p class="card-note">Loop through dictionary contents.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Dictionary Comprehension</h3>
+                        <pre><code># Square numbers
+squares = {x: x**2 for x in range(5)}
+# {0:0, 1:1, 2:4, 3:9, 4:16}
+
+# Filter
+adults = {k:v for k,v in ages.items() 
+          if v >= 18}</code></pre>
+                        <p class="card-note">Create dictionaries with concise syntax.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control Flow -->
+            <section class="cheat-section" id="control-flow">
+                <h2>🔀 Control Flow</h2>
+                <p class="section-desc">Conditionals and loops.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>If / Elif / Else</h3>
+                        <pre><code>if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+else:
+    grade = "F"</code></pre>
+                        <p class="card-note">Conditions are checked in order. First True wins.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Ternary Operator</h3>
+                        <pre><code>status = "adult" if age >= 18 else "minor"
+
+# Same as:
+if age >= 18:
+    status = "adult"
+else:
+    status = "minor"</code></pre>
+                        <p class="card-note">One-line conditional assignment.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>For Loop</h3>
+                        <pre><code># Iterate over list
+for fruit in fruits:
+    print(fruit)
+
+# With index
+for i, fruit in enumerate(fruits):
+    print(f"{i}: {fruit}")
+
+# Range
+for i in range(5):      # 0-4
+for i in range(2, 5):   # 2-4
+for i in range(0, 10, 2): # 0,2,4,6,8</code></pre>
+                        <p class="card-note">Iterate over any sequence or range.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>While Loop</h3>
+                        <pre><code>count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# With else (runs if no break)
+while condition:
+    # code
+else:
+    # runs when condition becomes False</code></pre>
+                        <p class="card-note">Loop while condition is True.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Break & Continue</h3>
+                        <pre><code># break - exit loop entirely
+for i in range(10):
+    if i == 5:
+        break  # Stops at 5
+
+# continue - skip to next iteration
+for i in range(5):
+    if i == 2:
+        continue  # Skips 2
+    print(i)  # 0,1,3,4</code></pre>
+                        <p class="card-note">Control loop execution flow.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Logical Operators</h3>
+                        <pre><code>True and False  # False
+True or False   # True
+not True        # False
+
+# Short-circuit evaluation
+x = a or default_value
+y = condition and result</code></pre>
+                        <p class="card-note">Combine conditions with and, or, not.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Functions -->
+            <section class="cheat-section" id="functions">
+                <h2>⚡ Functions</h2>
+                <p class="section-desc">Reusable blocks of code.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Basic Function</h3>
+                        <pre><code>def greet(name):
+    """Greet a person."""
+    return f"Hello, {name}!"
+
+# Call it
+message = greet("Alex")</code></pre>
+                        <p class="card-note">Use def keyword. Docstring describes function.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Default Parameters</h3>
+                        <pre><code>def greet(name, greeting="Hello"):
+    return f"{greeting}, {name}!"
+
+greet("Alex")           # "Hello, Alex!"
+greet("Alex", "Hi")     # "Hi, Alex!"</code></pre>
+                        <p class="card-note">Parameters with defaults are optional.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Keyword Arguments</h3>
+                        <pre><code>def create_user(name, age, city):
+    return {"name": name, "age": age}
+
+# Call with keywords (any order):
+create_user(age=25, name="Alex", city="LA")</code></pre>
+                        <p class="card-note">Explicitly name arguments when calling.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>*args and **kwargs</h3>
+                        <pre><code># *args - variable positional args
+def sum_all(*numbers):
+    return sum(numbers)
+sum_all(1, 2, 3, 4)  # 10
+
+# **kwargs - variable keyword args
+def print_info(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+print_info(name="Alex", age=25)</code></pre>
+                        <p class="card-note">Accept arbitrary number of arguments.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Multiple Return Values</h3>
+                        <pre><code>def get_stats(numbers):
+    return min(numbers), max(numbers)
+
+# Unpack the tuple
+smallest, largest = get_stats([1,2,3,4,5])
+# smallest=1, largest=5</code></pre>
+                        <p class="card-note">Return multiple values as a tuple.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Lambda Functions</h3>
+                        <pre><code># Anonymous inline function
+square = lambda x: x ** 2
+square(5)  # 25
+
+# Common with map, filter, sort
+nums = [3, 1, 4, 1, 5]
+sorted(nums, key=lambda x: -x)
+list(map(lambda x: x*2, nums))
+list(filter(lambda x: x > 2, nums))</code></pre>
+                        <p class="card-note">Short, anonymous functions for simple operations.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comprehensions -->
+            <section class="cheat-section" id="comprehensions">
+                <h2>🔄 Comprehensions</h2>
+                <p class="section-desc">Concise ways to create collections.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>List Comprehension</h3>
+                        <pre><code># Basic
+squares = [x**2 for x in range(5)]
+# [0, 1, 4, 9, 16]
+
+# With condition
+evens = [x for x in range(10) if x % 2 == 0]
+# [0, 2, 4, 6, 8]
+
+# Transform
+upper = [s.upper() for s in words]</code></pre>
+                        <p class="card-note">Create lists in a single line.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Dictionary Comprehension</h3>
+                        <pre><code>squares = {x: x**2 for x in range(5)}
+# {0:0, 1:1, 2:4, 3:9, 4:16}
+
+# From two lists
+keys = ["a", "b", "c"]
+vals = [1, 2, 3]
+d = {k: v for k, v in zip(keys, vals)}</code></pre>
+                        <p class="card-note">Create dictionaries in a single line.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Set Comprehension</h3>
+                        <pre><code>unique_lengths = {len(word) for word in words}
+
+# From list with duplicates
+nums = [1, 2, 2, 3, 3, 3]
+unique = {x for x in nums}  # {1, 2, 3}</code></pre>
+                        <p class="card-note">Create sets with automatic deduplication.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Generator Expression</h3>
+                        <pre><code># Like list comp but with ()
+gen = (x**2 for x in range(1000000))
+
+# Memory efficient - generates on demand
+for val in gen:
+    print(val)</code></pre>
+                        <p class="card-note">Lazy evaluation - great for large data.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- File I/O -->
+            <section class="cheat-section" id="file-io">
+                <h2>📁 File I/O</h2>
+                <p class="section-desc">Reading and writing files.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Reading Files</h3>
+                        <pre><code># Read entire file
+with open("file.txt", "r") as f:
+    content = f.read()
+
+# Read lines into list
+with open("file.txt", "r") as f:
+    lines = f.readlines()
+
+# Read line by line
+with open("file.txt", "r") as f:
+    for line in f:
+        print(line.strip())</code></pre>
+                        <p class="card-note">Use 'with' for automatic file closing.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Writing Files</h3>
+                        <pre><code># Write (overwrites)
+with open("file.txt", "w") as f:
+    f.write("Hello, World!")
+
+# Append
+with open("file.txt", "a") as f:
+    f.write("\nNew line")
+
+# Write multiple lines
+with open("file.txt", "w") as f:
+    f.writelines(["Line 1\n", "Line 2\n"])</code></pre>
+                        <p class="card-note">"w" overwrites, "a" appends to existing content.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>JSON Files</h3>
+                        <pre><code>import json
+
+# Write JSON
+with open("data.json", "w") as f:
+    json.dump(my_dict, f, indent=2)
+
+# Read JSON
+with open("data.json", "r") as f:
+    data = json.load(f)
+
+# String conversion
+json_str = json.dumps(my_dict)
+my_dict = json.loads(json_str)</code></pre>
+                        <p class="card-note">dump/load for files, dumps/loads for strings.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Path Operations</h3>
+                        <pre><code>from pathlib import Path
+
+path = Path("folder/file.txt")
+path.exists()      # Check if exists
+path.is_file()     # Is it a file?
+path.is_dir()      # Is it a directory?
+path.read_text()   # Read content
+path.write_text("content")  # Write</code></pre>
+                        <p class="card-note">Modern path handling with pathlib.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Classes -->
+            <section class="cheat-section" id="classes">
+                <h2>🏗️ Classes</h2>
+                <p class="section-desc">Object-oriented programming.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Basic Class</h3>
+                        <pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def greet(self):
+        return f"Hi, I'm {self.name}"
+
+# Create instance
+person = Person("Alex", 25)
+person.greet()  # "Hi, I'm Alex"</code></pre>
+                        <p class="card-note">__init__ is the constructor. self refers to instance.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Inheritance</h3>
+                        <pre><code>class Student(Person):
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)
+        self.grade = grade
+    
+    def study(self):
+        return f"{self.name} is studying"
+
+student = Student("Bob", 20, "A")
+student.greet()  # Inherited method
+student.study()  # Own method</code></pre>
+                        <p class="card-note">Use super() to call parent methods.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Class vs Instance Attributes</h3>
+                        <pre><code>class Dog:
+    species = "Canis familiaris"  # Class attr
+    
+    def __init__(self, name):
+        self.name = name  # Instance attr
+
+dog1 = Dog("Rex")
+dog2 = Dog("Buddy")
+Dog.species    # Shared by all
+dog1.name      # Unique to instance</code></pre>
+                        <p class="card-note">Class attributes are shared by all instances.</p>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Special Methods</h3>
+                        <pre><code>class Point:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+    
+    def __str__(self):  # print()
+        return f"({self.x}, {self.y})"
+    
+    def __repr__(self):  # repr()
+        return f"Point({self.x}, {self.y})"
+    
+    def __eq__(self, other):  # ==
+        return self.x == other.x and self.y == other.y</code></pre>
+                        <p class="card-note">Dunder methods customize class behavior.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="brand-icon">⚡</span>
+                    <span>Jonesys<span class="brand-accent">Code Dev</span></span>
+                </div>
+                <p>Keep this cheatsheet handy as you code! 🐍</p>
+                <div class="footer-links">
+                    <a href="index.html">Back to Courses</a>
+                    <span>© 2025 Jonesys Code Dev</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Control Flow - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/walkthrough.css">
+    <!-- Pyodide for running Python in the browser -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html">← Back to Courses</a>
+            <h1>🔀 Python Control Flow</h1>
+            <p>Learn about if statements, for loops and while loops</p>
+            <div class="pyodide-status" id="pyodideStatus">🐍 Loading Python...</div>
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text">Step <span id="currentStep">1</span> of <span id="totalSteps">8</span></p>
+            </div>
+        </header>
+
+        <div class="walkthrough-container">
+            <!-- Instruction Panel -->
+            <div class="instruction-panel">
+                <div class="step-indicator">
+                    <span class="current" id="stepBadge">Step 1</span>
+                    <span id="stepTitle">If Statement</span>
+                </div>
+
+                <h2 id="instructionTitle">Making Decisions</h2>
+
+                <div class="description" id="instructionDesc">
+                    <p>The if statement lets your code make decisions.</p>
+                </div>
+
+                <div class="code-breakdown" id="codeBreakdown">
+                    <h3>🔍 Code Breakdown</h3>
+                    <div id="breakdownContent"></div>
+                </div>
+
+                <div class="output-section" id="outputSection" style="display: none;">
+                    <h3>📤 Expected Output</h3>
+                    <pre id="outputContent"></pre>
+                </div>
+
+                <div class="detailed-explanation" id="detailedExplanation" style="display: none;">
+                    <h4>📚 Deep Dive</h4>
+                </div>
+
+                <div class="expected-code">
+                    <h3>📝 Type this code:</h3>
+                    <pre id="expectedCode"></pre>
+                </div>
+
+                <div class="tip-box" id="tipBox">
+                    <h4>💡 Tip</h4>
+                    <p id="tipText">Python uses indentation to define code blocks!</p>
+                </div>
+            </div>
+
+            <!-- Code Editor Panel -->
+            <div class="editor-panel">
+                <div class="editor-header">
+                    <div class="dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="filename">exercise.py</span>
+                </div>
+
+                <div class="editor-body">
+                    <div class="line-numbers" id="lineNumbers">1</div>
+                    <div class="code-input-area">
+                        <textarea id="codeInput" placeholder="Start typing your Python code here..."
+                            spellcheck="false"></textarea>
+                    </div>
+                </div>
+
+                <div class="feedback-area">
+                    <div class="feedback waiting" id="feedback">
+                        ⌨️ Start typing to begin...
+                    </div>
+                </div>
+
+                <!-- Terminal Output Section -->
+                <div class="terminal-section" id="terminalSection" style="display: none;">
+                    <div class="terminal-header">
+                        <span class="terminal-icon">▶</span>
+                        <span>Python Output</span>
+                    </div>
+                    <pre class="terminal-output" id="terminalOutput"></pre>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn" id="prevBtn" disabled>← Previous</button>
+                    <button class="btn btn-hint" id="hintBtn">💡 Show Hint</button>
+                    <button class="btn btn-run" id="runBtn">▶ Run Code</button>
+                    <button class="btn btn-success" id="nextBtn" disabled>Next Step →</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Jonesys Code Dev © 2025 | Keep coding! 🐍</p>
+        </footer>
+    </div>
+
+    <!-- Completion Modal -->
+    <div class="modal-overlay" id="completionModal">
+        <div class="modal">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Python Control Flow walkthrough! You now understand if statements, loops, break and
+                continue.</p>
+            <button class="btn" onclick="location.href='../index.html'">Back to Courses</button>
+            <button class="btn btn-success" onclick="location.href='python-functions.html'">Next: Functions →</button>
+        </div>
+    </div>
+
+    <script src="../scripts/walkthrough-engine.js"></script>
+    <script src="../scripts/python-control-flow.js"></script>
+</body>
+
+</html>

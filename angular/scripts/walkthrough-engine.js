@@ -4,36 +4,51 @@
  * This TypeScript file demonstrates key principles used throughout the project
  */
 // ============================================
-// COOKIE HELPER FUNCTIONS
+// STORAGE HELPER FUNCTIONS (localStorage)
 // ============================================
 /**
- * Sets a cookie with the given name, value, and expiration days
+ * Saves a value to localStorage
  */
-function setCookie(name, value, days = 365) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = 'expires=' + date.toUTCString();
-    document.cookie = name + '=' + encodeURIComponent(value) + ';' + expires + ';path=/;SameSite=Lax';
-}
-/**
- * Gets a cookie value by name
- */
-function getCookie(name) {
-    const nameEQ = name + '=';
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.indexOf(nameEQ) === 0) {
-            return decodeURIComponent(cookie.substring(nameEQ.length));
-        }
+function setStorage(name, value) {
+    try {
+        localStorage.setItem(name, value);
     }
-    return null;
+    catch (e) {
+        console.warn('localStorage not available, progress will not persist');
+    }
 }
 /**
- * Deletes a cookie by name
+ * Gets a value from localStorage
  */
+function getStorage(name) {
+    try {
+        return localStorage.getItem(name);
+    }
+    catch (e) {
+        console.warn('localStorage not available');
+        return null;
+    }
+}
+/**
+ * Removes a value from localStorage
+ */
+function removeStorage(name) {
+    try {
+        localStorage.removeItem(name);
+    }
+    catch (e) {
+        console.warn('localStorage not available');
+    }
+}
+// Legacy cookie functions for backwards compatibility
+function setCookie(name, value, days = 365) {
+    setStorage(name, value);
+}
+function getCookie(name) {
+    return getStorage(name);
+}
 function deleteCookie(name) {
-    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
+    removeStorage(name);
 }
 // ============================================
 // WALKTHROUGH ENGINE CLASS
