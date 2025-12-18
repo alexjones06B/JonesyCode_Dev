@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonesys Code Dev - Learn Python</title>
+    <title>Learn React - Jonesys Code Dev</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +52,7 @@
                             <span class="course-desc">Typed JavaScript</span>
                         </span>
                     </a>
-                    <a href="../react/index.html" class="course-link">
+                    <a href="../react/index.html" class="course-link active">
                         <span class="course-icon">⚛️</span>
                         <span class="course-info">
                             <span class="course-name">React</span>
@@ -66,7 +66,7 @@
                             <span class="course-desc">Web framework</span>
                         </span>
                     </a>
-                    <a href="../python/index.html" class="course-link active">
+                    <a href="../python/index.html" class="course-link">
                         <span class="course-icon">🐍</span>
                         <span class="course-info">
                             <span class="course-name">Python</span>
@@ -78,7 +78,7 @@
 
             <div class="nav-stats">
                 <div class="stat-item">
-                    <span class="stat-value" id="totalExercises">32</span>
+                    <span class="stat-value" id="totalExercises">30</span>
                     <span class="stat-label">Exercises</span>
                 </div>
                 <div class="stat-item">
@@ -93,79 +93,147 @@
         <!-- Hero Section -->
         <header class="hero">
             <div class="hero-badge">Interactive Learning Platform</div>
-            <h1>Master <span class="highlight">Python</span> by Typing Real Code</h1>
-            <p class="hero-subtitle">Learn Python programming through hands-on exercises with a live interpreter. Type
-                each line, see instant results with Pyodide!</p>
+            <h1>Master <span class="highlight react-highlight">React</span> by Building Real Apps</h1>
+            <p class="hero-subtitle">Learn Facebook's powerful UI library through hands-on exercises. Build components,
+                manage state, and create dynamic user interfaces.</p>
 
             <div class="hero-features">
                 <div class="feature">
-                    <span class="feature-icon">🐍</span>
-                    <span>Real Python in Browser</span>
+                    <span class="feature-icon">⚛️</span>
+                    <span>Component-Based</span>
                 </div>
                 <div class="feature">
-                    <span class="feature-icon">▶️</span>
-                    <span>Run Code Instantly</span>
+                    <span class="feature-icon">🎣</span>
+                    <span>Hooks & State</span>
                 </div>
                 <div class="feature">
-                    <span class="feature-icon">💾</span>
-                    <span>Progress Saved</span>
+                    <span class="feature-icon">⚡</span>
+                    <span>Virtual DOM</span>
                 </div>
             </div>
         </header>
+
+        <!-- What is React Section -->
+        <section class="section framework-intro">
+            <div class="section-header">
+                <h2>⚛️ What is React?</h2>
+                <p>Understanding the library before diving in</p>
+            </div>
+
+            <div class="intro-content">
+                <div class="intro-card main-intro">
+                    <h3>React is a JavaScript Library</h3>
+                    <p>React is a <strong>declarative, component-based library</strong> built and maintained by Meta
+                        (Facebook) for creating
+                        interactive user interfaces. Unlike full frameworks, React focuses on the view layer:</p>
+                    <ul>
+                        <li><strong>Component Architecture</strong> - Build encapsulated, reusable UI building blocks
+                        </li>
+                        <li><strong>Virtual DOM</strong> - Efficient updates through reconciliation</li>
+                        <li><strong>Hooks</strong> - Powerful state and lifecycle management</li>
+                        <li><strong>JSX</strong> - Intuitive syntax for describing UI</li>
+                        <li><strong>Unidirectional Data Flow</strong> - Predictable state management</li>
+                        <li><strong>Rich Ecosystem</strong> - React Router, Redux, Next.js and more</li>
+                    </ul>
+                </div>
+
+                <div class="intro-cards-grid">
+                    <div class="intro-card">
+                        <span class="card-icon">🧩</span>
+                        <h4>Flexible Architecture</h4>
+                        <p>React is "just" the view layer. You choose the tools that work best for your project -
+                            routing, state management, and more.</p>
+                    </div>
+
+                    <div class="intro-card">
+                        <span class="card-icon">🎣</span>
+                        <h4>Hooks Revolution</h4>
+                        <p>Modern React uses hooks like useState, useEffect, and useContext. Write cleaner code without
+                            classes.</p>
+                    </div>
+
+                    <div class="intro-card">
+                        <span class="card-icon">⚡</span>
+                        <h4>Virtual DOM</h4>
+                        <p>React creates an in-memory representation of the UI. It calculates the minimal changes needed
+                            and updates only what's necessary.</p>
+                    </div>
+
+                    <div class="intro-card">
+                        <span class="card-icon">📦</span>
+                        <h4>Rich Ecosystem</h4>
+                        <p>From Next.js for SSR to React Native for mobile apps, the React ecosystem covers every use
+                            case.</p>
+                    </div>
+                </div>
+
+                <div class="intro-card comparison">
+                    <h4>React vs Other Frameworks</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>React</th>
+                                <th>Angular</th>
+                                <th>Vue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Type</td>
+                                <td>Library</td>
+                                <td>Full Framework</td>
+                                <td>Progressive Framework</td>
+                            </tr>
+                            <tr>
+                                <td>Language</td>
+                                <td>JavaScript/JSX</td>
+                                <td>TypeScript</td>
+                                <td>JavaScript</td>
+                            </tr>
+                            <tr>
+                                <td>Data Binding</td>
+                                <td>One-way</td>
+                                <td>Two-way</td>
+                                <td>Two-way</td>
+                            </tr>
+                            <tr>
+                                <td>Learning Curve</td>
+                                <td>Moderate</td>
+                                <td>Steeper</td>
+                                <td>Gentle</td>
+                            </tr>
+                            <tr>
+                                <td>Best For</td>
+                                <td>Flexible UIs</td>
+                                <td>Enterprise Apps</td>
+                                <td>Quick Start</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
         <!-- Learning Path Section -->
         <section class="section">
             <div class="section-header">
                 <h2>Learning Path</h2>
-                <p>Complete each module in order to build your Python skills</p>
+                <p>Complete each module in order to master React fundamentals</p>
             </div>
 
             <div class="learning-path">
                 <div class="path-line"></div>
 
-                <a href="walkthroughs/python-basics.html" class="path-card" data-step="1">
+                <a href="walkthroughs/react-basics.html" class="path-card" data-step="1">
                     <div class="path-step">1</div>
                     <div class="path-content">
                         <div class="path-header">
-                            <span class="path-icon">🐍</span>
+                            <span class="path-icon">⚛️</span>
                             <span class="difficulty beginner">Beginner</span>
                         </div>
-                        <h3>Python Basics</h3>
-                        <p>Print, variables, and fundamental syntax</p>
-                        <div class="path-meta">
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M12 6v6l4 2" />
-                                </svg> 25 mins</span>
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                    <path d="M14 2v6h6" />
-                                    <path d="M16 13H8" />
-                                    <path d="M16 17H8" />
-                                    <path d="M10 9H8" />
-                                </svg> 8 exercises</span>
-                        </div>
-                        <div class="path-progress">
-                            <div class="progress-bar-mini">
-                                <div class="progress-fill-mini" style="width: 0%"></div>
-                            </div>
-                            <span>0% complete</span>
-                        </div>
-                    </div>
-                    <div class="path-arrow">→</div>
-                </a>
-
-                <a href="walkthroughs/python-data-types.html" class="path-card" data-step="2">
-                    <div class="path-step">2</div>
-                    <div class="path-content">
-                        <div class="path-header">
-                            <span class="path-icon">📦</span>
-                            <span class="difficulty beginner">Beginner</span>
-                        </div>
-                        <h3>Data Types</h3>
-                        <p>Lists, dictionaries, tuples & booleans</p>
+                        <h3>React Basics</h3>
+                        <p>JSX syntax, rendering elements, and project structure</p>
                         <div class="path-meta">
                             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
@@ -179,7 +247,7 @@
                                     <path d="M16 13H8" />
                                     <path d="M16 17H8" />
                                     <path d="M10 9H8" />
-                                </svg> 8 exercises</span>
+                                </svg> 6 exercises</span>
                         </div>
                         <div class="path-progress">
                             <div class="progress-bar-mini">
@@ -191,15 +259,15 @@
                     <div class="path-arrow">→</div>
                 </a>
 
-                <a href="walkthroughs/python-control-flow.html" class="path-card" data-step="3">
-                    <div class="path-step">3</div>
+                <a href="walkthroughs/react-components.html" class="path-card" data-step="2">
+                    <div class="path-step">2</div>
                     <div class="path-content">
                         <div class="path-header">
-                            <span class="path-icon">🔀</span>
+                            <span class="path-icon">🧱</span>
                             <span class="difficulty beginner">Beginner</span>
                         </div>
-                        <h3>Control Flow</h3>
-                        <p>If statements, for loops & while loops</p>
+                        <h3>Components & Props</h3>
+                        <p>Building reusable components and passing data</p>
                         <div class="path-meta">
                             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
@@ -213,7 +281,7 @@
                                     <path d="M16 13H8" />
                                     <path d="M16 17H8" />
                                     <path d="M10 9H8" />
-                                </svg> 8 exercises</span>
+                                </svg> 7 exercises</span>
                         </div>
                         <div class="path-progress">
                             <div class="progress-bar-mini">
@@ -225,15 +293,83 @@
                     <div class="path-arrow">→</div>
                 </a>
 
-                <a href="walkthroughs/python-functions.html" class="path-card" data-step="4">
+                <a href="walkthroughs/react-hooks.html" class="path-card" data-step="3">
+                    <div class="path-step">3</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">🎣</span>
+                            <span class="difficulty intermediate">Intermediate</span>
+                        </div>
+                        <h3>React Hooks</h3>
+                        <p>useState, useEffect, and custom hooks</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 40 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 6 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                </a>
+
+                <a href="walkthroughs/react-state.html" class="path-card" data-step="4">
                     <div class="path-step">4</div>
                     <div class="path-content">
                         <div class="path-header">
-                            <span class="path-icon">⚡</span>
+                            <span class="path-icon">📊</span>
                             <span class="difficulty intermediate">Intermediate</span>
                         </div>
-                        <h3>Functions</h3>
-                        <p>Define, call & return values</p>
+                        <h3>State Management</h3>
+                        <p>Context API and lifting state up</p>
+                        <div class="path-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg> 35 mins</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M16 13H8" />
+                                    <path d="M16 17H8" />
+                                    <path d="M10 9H8" />
+                                </svg> 5 exercises</span>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-bar-mini">
+                                <div class="progress-fill-mini" style="width: 0%"></div>
+                            </div>
+                            <span>0% complete</span>
+                        </div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                </a>
+
+                <a href="walkthroughs/react-routing.html" class="path-card" data-step="5">
+                    <div class="path-step">5</div>
+                    <div class="path-content">
+                        <div class="path-header">
+                            <span class="path-icon">🧭</span>
+                            <span class="difficulty advanced">Advanced</span>
+                        </div>
+                        <h3>React Router</h3>
+                        <p>Navigation, routes, and dynamic routing</p>
                         <div class="path-meta">
                             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
@@ -247,7 +383,7 @@
                                     <path d="M16 13H8" />
                                     <path d="M16 17H8" />
                                     <path d="M10 9H8" />
-                                </svg> 8 exercises</span>
+                                </svg> 6 exercises</span>
                         </div>
                         <div class="path-progress">
                             <div class="progress-bar-mini">
@@ -256,85 +392,69 @@
                             <span>0% complete</span>
                         </div>
                     </div>
-                    <div class="path-arrow">→</div>
+                    <div class="path-arrow">🏆</div>
                 </a>
             </div>
         </section>
 
-        <!-- Quick Reference -->
-        <section class="section">
+        <!-- Resources Section -->
+        <section class="section resources-section">
             <div class="section-header">
-                <h2>Quick Reference</h2>
-                <p>Keep this cheatsheet handy while you learn</p>
+                <h2>📚 Resources</h2>
+                <p>Quick references to help you while learning</p>
             </div>
 
-            <div class="resource-cards">
-                <a href="cheatsheet.html" class="resource-card featured">
-                    <div class="resource-icon">📋</div>
+            <div class="resources-grid">
+                <a href="cheatsheet.html" class="resource-card">
+                    <div class="resource-icon">⚛️</div>
                     <div class="resource-content">
-                        <h3>Python Cheat Sheet</h3>
-                        <p>Complete syntax reference for Python basics, data types, functions, and more!</p>
+                        <h3>React Cheat Sheet</h3>
+                        <p>Quick reference for React hooks, JSX syntax, component patterns, and common APIs.
+                            Bookmark it!</p>
                         <span class="resource-cta">View Cheat Sheet →</span>
                     </div>
                 </a>
-            </div>
-        </section>
 
-        <!-- Why Python Section -->
-        <section class="section">
-            <div class="section-header">
-                <h2>Why Learn Python?</h2>
-                <p>One of the world's most popular and versatile programming languages</p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <span class="feature-card-icon">🎯</span>
-                    <h3>Beginner Friendly</h3>
-                    <p>Clean, readable syntax that's perfect for learning programming concepts</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-card-icon">🤖</span>
-                    <h3>AI & Machine Learning</h3>
-                    <p>The go-to language for data science, AI, and machine learning</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-card-icon">🌐</span>
-                    <h3>Web Development</h3>
-                    <p>Build backends with Django, Flask, and FastAPI</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-card-icon">📊</span>
-                    <h3>Data Analysis</h3>
-                    <p>Pandas, NumPy, and visualization tools for data work</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Other Courses -->
-        <section class="section">
-            <div class="section-header">
-                <h2>Explore Other Courses</h2>
-                <p>Continue your learning journey with these related courses</p>
-            </div>
-
-            <div class="resource-cards">
-                <a href="../html/index.html" class="resource-card">
-                    <div class="resource-icon">🌐</div>
-                    <div class="resource-content">
-                        <h3>HTML Fundamentals</h3>
-                        <p>Learn the building blocks of web pages. Structure content with semantic HTML5 elements.</p>
-                        <span class="resource-cta">Start Learning HTML →</span>
-                    </div>
-                </a>
                 <a href="../typescript/index.html" class="resource-card">
                     <div class="resource-icon">📘</div>
                     <div class="resource-content">
-                        <h3>TypeScript Essentials</h3>
-                        <p>Add types to JavaScript for safer, more maintainable code.</p>
-                        <span class="resource-cta">Start Learning TypeScript →</span>
+                        <h3>TypeScript Course</h3>
+                        <p>React works great with TypeScript. Learn types, interfaces, and generics for type-safe React
+                            apps.</p>
+                        <span class="resource-cta">Learn TypeScript →</span>
                     </div>
                 </a>
+            </div>
+        </section>
+
+        <!-- Prerequisites Section -->
+        <section class="section prereq-section">
+            <div class="section-header">
+                <h2>📋 Prerequisites</h2>
+                <p>What you should know before starting</p>
+            </div>
+
+            <div class="prereq-grid">
+                <div class="prereq-card">
+                    <span class="prereq-icon">✅</span>
+                    <h4>HTML & CSS</h4>
+                    <p>Basic understanding of markup and styling</p>
+                </div>
+                <div class="prereq-card">
+                    <span class="prereq-icon">✅</span>
+                    <h4>JavaScript ES6+</h4>
+                    <p>Arrow functions, destructuring, modules, promises</p>
+                </div>
+                <div class="prereq-card">
+                    <span class="prereq-icon">✅</span>
+                    <h4>Node.js Installed</h4>
+                    <p>Required for Create React App and npm packages</p>
+                </div>
+                <div class="prereq-card">
+                    <span class="prereq-icon">💡</span>
+                    <h4>TypeScript (Optional)</h4>
+                    <p>Recommended for larger projects and better tooling</p>
+                </div>
             </div>
         </section>
 
@@ -369,14 +489,14 @@
         // Progress tracking display using localStorage
         document.addEventListener('DOMContentLoaded', () => {
             let totalCompleted = 0;
-            const walkthroughs = ['python-basics', 'python-data-types', 'python-control-flow', 'python-functions'];
+            const walkthroughs = ['react-basics', 'react-components', 'react-hooks', 'react-state', 'react-routing'];
 
             walkthroughs.forEach((id, index) => {
                 const saved = getStorage('walkthrough-progress-' + id);
                 if (saved) {
                     try {
                         const progress = JSON.parse(saved);
-                        const steps = [8, 8, 8, 8]; // exercises per walkthrough
+                        const steps = [6, 7, 6, 5, 6]; // exercises per walkthrough
                         const completed = progress.completedSteps ? progress.completedSteps.length : 0;
                         const percentage = Math.round((completed / steps[index]) * 100);
 

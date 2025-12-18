@@ -1,22 +1,24 @@
 {
     "name": "jonesycode-dev",
     "version": "1.0.0",
-    "description": "Interactive HTML, CSS, TypeScript, Angular and Python learning walkthroughs - Jonesys Code Dev",
+    "description": "Interactive HTML, CSS, TypeScript, React, Angular and Python learning walkthroughs - Jonesys Code Dev",
     "scripts": {
-        "build": "npm run build:html && npm run build:css && npm run build:typescript && npm run build:angular && npm run build:python",
+        "build": "npm run build:html && npm run build:css && npm run build:typescript && npm run build:react && npm run build:angular && npm run build:python",
         "build:html": "cd html && tsc",
         "build:css": "cd css && tsc",
         "build:typescript": "cd typescript && tsc",
+        "build:react": "cd react && tsc",
         "build:angular": "cd angular && tsc",
         "build:python": "cd python && tsc",
         "serve": "npx http-server . -p 8080 -o html/index.html",
         "dev": "npm run build && npx http-server . -p 8080 -o html/index.html",
-        "watch": "concurrently \"cd html && tsc --watch\" \"cd css && tsc --watch\" \"cd typescript && tsc --watch\" \"cd angular && tsc --watch\" \"cd python && tsc --watch\" \"npm run serve\""
+        "watch": "concurrently \"cd html && tsc --watch\" \"cd css && tsc --watch\" \"cd typescript && tsc --watch\" \"cd react && tsc --watch\" \"cd angular && tsc --watch\" \"cd python && tsc --watch\" \"npm run serve\""
     },
     "keywords": [
         "html",
         "css",
         "typescript",
+        "react",
         "angular",
         "python",
         "learning",

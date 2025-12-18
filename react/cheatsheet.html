@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Cheat Sheet - Jonesys Code Dev</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cheatsheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-text">Jonesys<span class="brand-accent">Code Dev</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to React Course</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="cheatsheet-hero">
+            <div class="hero-badge">Quick Reference Guide</div>
+            <h1>⚛️ React <span class="highlight">Cheat Sheet</span></h1>
+            <p class="hero-subtitle">Your go-to reference for React hooks, JSX syntax, component patterns, and common
+                APIs.
+                Bookmark this page!</p>
+        </header>
+
+        <!-- Quick Navigation -->
+        <nav class="quick-nav">
+            <a href="#jsx-basics">JSX Basics</a>
+            <a href="#components">Components</a>
+            <a href="#props">Props</a>
+            <a href="#hooks">Hooks</a>
+            <a href="#events">Events</a>
+            <a href="#lists">Lists & Keys</a>
+            <a href="#conditional">Conditional Rendering</a>
+            <a href="#context">Context API</a>
+            <a href="#routing">React Router</a>
+            <a href="#patterns">Common Patterns</a>
+        </nav>
+
+        <!-- Cheat Sheet Sections -->
+        <main class="cheatsheet-content">
+
+            <!-- JSX Basics -->
+            <section class="cheat-section" id="jsx-basics">
+                <h2>📝 JSX Basics</h2>
+                <p class="section-desc">JSX is a syntax extension that looks like HTML but is actually JavaScript.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>JSX Expression</h3>
+                        <pre><code>// Embed JavaScript with curly braces
+const name = "React";
+const element = &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;
+
+// Any JS expression works
+&lt;p&gt;{2 + 2}&lt;/p&gt;
+&lt;p&gt;{user.firstName}&lt;/p&gt;
+&lt;p&gt;{formatDate(new Date())}&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>JSX Attributes</h3>
+                        <pre><code>// Use camelCase for attributes
+&lt;div className="container"&gt;&lt;/div&gt;
+&lt;label htmlFor="name"&gt;&lt;/label&gt;
+&lt;input tabIndex={1} /&gt;
+
+// Spread attributes
+const props = { id: "btn", disabled: true };
+&lt;button {...props}&gt;Click&lt;/button&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Inline Styles</h3>
+                        <pre><code>// Style is an object with camelCase
+const styles = {
+    backgroundColor: "blue",
+    fontSize: "16px",
+    padding: "10px"
+};
+
+&lt;div style={styles}&gt;Styled&lt;/div&gt;
+
+// Or inline
+&lt;div style={{ color: "red" }}&gt;Red&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Fragments</h3>
+                        <pre><code>// Group elements without extra DOM nodes
+import { Fragment } from "react";
+
+// Short syntax (most common)
+&lt;&gt;
+    &lt;h1&gt;Title&lt;/h1&gt;
+    &lt;p&gt;Content&lt;/p&gt;
+&lt;/&gt;
+
+// Full syntax (needed for keys)
+&lt;Fragment key={id}&gt;
+    &lt;dt&gt;{term}&lt;/dt&gt;
+    &lt;dd&gt;{definition}&lt;/dd&gt;
+&lt;/Fragment&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Components -->
+            <section class="cheat-section" id="components">
+                <h2>🧱 Components</h2>
+                <p class="section-desc">The building blocks of React applications.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Functional Component</h3>
+                        <pre><code>// Basic component
+function Welcome() {
+    return &lt;h1&gt;Hello, World!&lt;/h1&gt;;
+}
+
+// Arrow function syntax
+const Welcome = () =&gt; {
+    return &lt;h1&gt;Hello, World!&lt;/h1&gt;;
+};
+
+// Implicit return (single expression)
+const Welcome = () =&gt; &lt;h1&gt;Hello, World!&lt;/h1&gt;;
+
+// Using the component
+&lt;Welcome /&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Component with Children</h3>
+                        <pre><code>function Card({ children, title }) {
+    return (
+        &lt;div className="card"&gt;
+            &lt;h3&gt;{title}&lt;/h3&gt;
+            {children}
+        &lt;/div&gt;
+    );
+}
+
+// Usage
+&lt;Card title="Welcome"&gt;
+    &lt;p&gt;Card content here&lt;/p&gt;
+    &lt;button&gt;Action&lt;/button&gt;
+&lt;/Card&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Default Export</h3>
+                        <pre><code>// MyComponent.jsx
+function MyComponent() {
+    return &lt;div&gt;Content&lt;/div&gt;;
+}
+
+export default MyComponent;
+
+// Import (any name works)
+import MyComponent from "./MyComponent";
+import Whatever from "./MyComponent";</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props -->
+            <section class="cheat-section" id="props">
+                <h2>📦 Props</h2>
+                <p class="section-desc">Passing data to components.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Basic Props</h3>
+                        <pre><code>// Receiving props
+function Greeting(props) {
+    return &lt;h1&gt;Hello, {props.name}!&lt;/h1&gt;;
+}
+
+// Passing props
+&lt;Greeting name="Alex" /&gt;
+&lt;Greeting name="Sam" /&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Destructuring Props</h3>
+                        <pre><code>// Destructure in parameters
+function User({ name, email, age }) {
+    return (
+        &lt;div&gt;
+            &lt;h2&gt;{name}&lt;/h2&gt;
+            &lt;p&gt;{email}&lt;/p&gt;
+            &lt;p&gt;Age: {age}&lt;/p&gt;
+        &lt;/div&gt;
+    );
+}
+
+&lt;User name="Alex" email="a@b.com" age={25} /&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Default Props</h3>
+                        <pre><code>// Default values in destructuring
+function Button({ 
+    text = "Click me", 
+    type = "primary",
+    disabled = false 
+}) {
+    return (
+        &lt;button 
+            className={type}
+            disabled={disabled}
+        &gt;
+            {text}
+        &lt;/button&gt;
+    );
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Passing Functions</h3>
+                        <pre><code>function Parent() {
+    const handleClick = (msg) =&gt; {
+        alert(msg);
+    };
+    
+    return (
+        &lt;Child onAction={handleClick} /&gt;
+    );
+}
+
+function Child({ onAction }) {
+    return (
+        &lt;button onClick={() =&gt; onAction("Hi!")}&gt;
+            Click
+        &lt;/button&gt;
+    );
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hooks -->
+            <section class="cheat-section" id="hooks">
+                <h2>🎣 React Hooks</h2>
+                <p class="section-desc">State and lifecycle in functional components.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>useState</h3>
+                        <pre><code>import { useState } from "react";
+
+function Counter() {
+    const [count, setCount] = useState(0);
+    
+    // Update with new value
+    const increment = () =&gt; setCount(count + 1);
+    
+    // Update with function (safer for async)
+    const incrementSafe = () =&gt; setCount(prev =&gt; prev + 1);
+    
+    // Update object state (spread to keep other properties)
+    const [user, setUser] = useState({ name: "", age: 0 });
+    const updateName = (name) =&gt; setUser(prev =&gt; ({ ...prev, name }));
+    
+    return &lt;button onClick={increment}&gt;Count: {count}&lt;/button&gt;;
+}</code></pre>
+                    </div>
+
+                    <div class="code-card wide">
+                        <h3>useEffect</h3>
+                        <pre><code>import { useState, useEffect } from "react";
+
+function DataFetcher({ userId }) {
+    const [data, setData] = useState(null);
+    
+    // Run on every render
+    useEffect(() =&gt; {
+        console.log("Rendered!");
+    });
+    
+    // Run once on mount
+    useEffect(() =&gt; {
+        console.log("Mounted!");
+    }, []);
+    
+    // Run when dependency changes
+    useEffect(() =&gt; {
+        fetchUser(userId).then(setData);
+    }, [userId]);
+    
+    // Cleanup function
+    useEffect(() =&gt; {
+        const subscription = subscribe();
+        return () =&gt; subscription.unsubscribe(); // Cleanup
+    }, []);
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>useRef</h3>
+                        <pre><code>import { useRef } from "react";
+
+function TextInput() {
+    const inputRef = useRef(null);
+    
+    const focusInput = () =&gt; {
+        inputRef.current.focus();
+    };
+    
+    return (
+        &lt;&gt;
+            &lt;input ref={inputRef} /&gt;
+            &lt;button onClick={focusInput}&gt;
+                Focus
+            &lt;/button&gt;
+        &lt;/&gt;
+    );
+}
+
+// Also for mutable values
+const countRef = useRef(0);
+countRef.current++; // Doesn't re-render</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>useMemo & useCallback</h3>
+                        <pre><code>import { useMemo, useCallback } from "react";
+
+function ExpensiveComponent({ items, filter }) {
+    // Memoize expensive computation
+    const filtered = useMemo(() =&gt; {
+        return items.filter(item =&gt; 
+            item.name.includes(filter)
+        );
+    }, [items, filter]);
+    
+    // Memoize callback function
+    const handleClick = useCallback((id) =&gt; {
+        console.log("Clicked:", id);
+    }, []); // Empty = never recreated
+    
+    return &lt;List items={filtered} onClick={handleClick} /&gt;;
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>useReducer</h3>
+                        <pre><code>import { useReducer } from "react";
+
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+    switch (action.type) {
+        case "increment":
+            return { count: state.count + 1 };
+        case "decrement":
+            return { count: state.count - 1 };
+        default:
+            throw new Error();
+    }
+}
+
+function Counter() {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    
+    return (
+        &lt;&gt;
+            Count: {state.count}
+            &lt;button onClick={() =&gt; dispatch({ type: "increment" })}&gt;+&lt;/button&gt;
+            &lt;button onClick={() =&gt; dispatch({ type: "decrement" })}&gt;-&lt;/button&gt;
+        &lt;/&gt;
+    );
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Custom Hook</h3>
+                        <pre><code>// Custom hooks start with "use"
+function useLocalStorage(key, initialValue) {
+    const [value, setValue] = useState(() =&gt; {
+        const stored = localStorage.getItem(key);
+        return stored ? JSON.parse(stored) : initialValue;
+    });
+    
+    useEffect(() =&gt; {
+        localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+    
+    return [value, setValue];
+}
+
+// Usage
+function App() {
+    const [name, setName] = useLocalStorage("name", "");
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events -->
+            <section class="cheat-section" id="events">
+                <h2>🖱️ Event Handling</h2>
+                <p class="section-desc">Responding to user interactions.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Common Events</h3>
+                        <pre><code>// Click
+&lt;button onClick={handleClick}&gt;Click&lt;/button&gt;
+
+// With parameter
+&lt;button onClick={() =&gt; handleClick(id)}&gt;
+    Delete
+&lt;/button&gt;
+
+// Change (inputs)
+&lt;input onChange={(e) =&gt; setName(e.target.value)} /&gt;
+
+// Submit (forms)
+&lt;form onSubmit={handleSubmit}&gt;
+
+// Mouse events
+&lt;div onMouseEnter={} onMouseLeave={} /&gt;
+
+// Keyboard
+&lt;input onKeyDown={} onKeyUp={} /&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Event Object</h3>
+                        <pre><code>function Form() {
+    const handleSubmit = (e) =&gt; {
+        e.preventDefault(); // Stop form submit
+        // ... handle data
+    };
+    
+    const handleChange = (e) =&gt; {
+        console.log(e.target.value);  // Input value
+        console.log(e.target.name);   // Input name
+        console.log(e.target.type);   // Input type
+    };
+    
+    return (
+        &lt;form onSubmit={handleSubmit}&gt;
+            &lt;input 
+                name="email"
+                onChange={handleChange} 
+            /&gt;
+        &lt;/form&gt;
+    );
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lists -->
+            <section class="cheat-section" id="lists">
+                <h2>📋 Lists & Keys</h2>
+                <p class="section-desc">Rendering arrays of data.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Rendering Lists</h3>
+                        <pre><code>function UserList({ users }) {
+    return (
+        &lt;ul&gt;
+            {users.map(user =&gt; (
+                &lt;li key={user.id}&gt;
+                    {user.name} - {user.email}
+                &lt;/li&gt;
+            ))}
+        &lt;/ul&gt;
+    );
+}
+
+// With component
+function UserList({ users }) {
+    return (
+        &lt;div&gt;
+            {users.map(user =&gt; (
+                &lt;UserCard key={user.id} user={user} /&gt;
+            ))}
+        &lt;/div&gt;
+    );
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Key Rules</h3>
+                        <pre><code>// ✅ Good: Use unique ID from data
+{items.map(item =&gt; (
+    &lt;Item key={item.id} {...item} /&gt;
+))}
+
+// ⚠️ Last resort: Index (avoid if order changes)
+{items.map((item, index) =&gt; (
+    &lt;Item key={index} {...item} /&gt;
+))}
+
+// ❌ Bad: Random keys (causes remounting)
+{items.map(item =&gt; (
+    &lt;Item key={Math.random()} {...item} /&gt;
+))}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conditional Rendering -->
+            <section class="cheat-section" id="conditional">
+                <h2>🔀 Conditional Rendering</h2>
+                <p class="section-desc">Showing content based on conditions.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Ternary Operator</h3>
+                        <pre><code>function Greeting({ isLoggedIn }) {
+    return (
+        &lt;div&gt;
+            {isLoggedIn 
+                ? &lt;UserDashboard /&gt; 
+                : &lt;LoginForm /&gt;
+            }
+        &lt;/div&gt;
+    );
+}
+
+// Inline text
+&lt;p&gt;{count === 1 ? "item" : "items"}&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Logical AND (&&)</h3>
+                        <pre><code>function Notifications({ messages }) {
+    return (
+        &lt;div&gt;
+            {messages.length &gt; 0 && (
+                &lt;Badge count={messages.length} /&gt;
+            )}
+        &lt;/div&gt;
+    );
+}
+
+// ⚠️ Avoid with numbers (0 renders as "0")
+// Use: {count &gt; 0 && ...}
+// Not: {count && ...}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Early Return</h3>
+                        <pre><code>function UserProfile({ user, isLoading }) {
+    if (isLoading) {
+        return &lt;Spinner /&gt;;
+    }
+    
+    if (!user) {
+        return &lt;p&gt;User not found&lt;/p&gt;;
+    }
+    
+    return (
+        &lt;div&gt;
+            &lt;h1&gt;{user.name}&lt;/h1&gt;
+            &lt;p&gt;{user.bio}&lt;/p&gt;
+        &lt;/div&gt;
+    );
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Nullish Coalescing</h3>
+                        <pre><code>function Display({ value }) {
+    return (
+        &lt;div&gt;
+            {/* Shows fallback if null/undefined */}
+            &lt;p&gt;{value ?? "No value"}&lt;/p&gt;
+            
+            {/* Optional chaining */}
+            &lt;p&gt;{user?.address?.city}&lt;/p&gt;
+            
+            {/* Combined */}
+            &lt;p&gt;{user?.name ?? "Anonymous"}&lt;/p&gt;
+        &lt;/div&gt;
+    );
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Context API -->
+            <section class="cheat-section" id="context">
+                <h2>🌐 Context API</h2>
+                <p class="section-desc">Sharing data across the component tree.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Creating & Using Context</h3>
+                        <pre><code>import { createContext, useContext, useState } from "react";
+
+// 1. Create context
+const ThemeContext = createContext("light");
+
+// 2. Create provider component
+function ThemeProvider({ children }) {
+    const [theme, setTheme] = useState("light");
+    
+    const toggleTheme = () =&gt; {
+        setTheme(prev =&gt; prev === "light" ? "dark" : "light");
+    };
+    
+    return (
+        &lt;ThemeContext.Provider value={{ theme, toggleTheme }}&gt;
+            {children}
+        &lt;/ThemeContext.Provider&gt;
+    );
+}
+
+// 3. Custom hook for easier access
+function useTheme() {
+    return useContext(ThemeContext);
+}
+
+// 4. Usage in components
+function Header() {
+    const { theme, toggleTheme } = useTheme();
+    return (
+        &lt;header className={theme}&gt;
+            &lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
+        &lt;/header&gt;
+    );
+}
+
+// 5. Wrap app with provider
+function App() {
+    return (
+        &lt;ThemeProvider&gt;
+            &lt;Header /&gt;
+            &lt;Main /&gt;
+        &lt;/ThemeProvider&gt;
+    );
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- React Router -->
+            <section class="cheat-section" id="routing">
+                <h2>🧭 React Router</h2>
+                <p class="section-desc">Client-side routing for SPAs.</p>
+
+                <div class="code-cards">
+                    <div class="code-card wide">
+                        <h3>Basic Setup (v6)</h3>
+                        <pre><code>import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
+
+function App() {
+    return (
+        &lt;BrowserRouter&gt;
+            &lt;nav&gt;
+                &lt;Link to="/"&gt;Home&lt;/Link&gt;
+                &lt;NavLink to="/about" className={({ isActive }) =&gt; isActive ? "active" : ""}&gt;
+                    About
+                &lt;/NavLink&gt;
+            &lt;/nav&gt;
+            
+            &lt;Routes&gt;
+                &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+                &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+                &lt;Route path="/users/:userId" element={&lt;UserProfile /&gt;} /&gt;
+                &lt;Route path="*" element={&lt;NotFound /&gt;} /&gt;
+            &lt;/Routes&gt;
+        &lt;/BrowserRouter&gt;
+    );
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Hooks</h3>
+                        <pre><code>import { 
+    useParams, 
+    useNavigate, 
+    useLocation,
+    useSearchParams
+} from "react-router-dom";
+
+function UserProfile() {
+    // URL params (/users/:userId)
+    const { userId } = useParams();
+    
+    // Programmatic navigation
+    const navigate = useNavigate();
+    const goHome = () =&gt; navigate("/");
+    const goBack = () =&gt; navigate(-1);
+    
+    // Current location info
+    const location = useLocation();
+    console.log(location.pathname);
+    
+    // Query params (?search=react)
+    const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get("search");
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Nested Routes</h3>
+                        <pre><code>// Parent route
+&lt;Route path="/dashboard" element={&lt;Dashboard /&gt;}&gt;
+    &lt;Route index element={&lt;DashHome /&gt;} /&gt;
+    &lt;Route path="settings" element={&lt;Settings /&gt;} /&gt;
+    &lt;Route path="profile" element={&lt;Profile /&gt;} /&gt;
+&lt;/Route&gt;
+
+// Dashboard component uses Outlet
+import { Outlet } from "react-router-dom";
+
+function Dashboard() {
+    return (
+        &lt;div&gt;
+            &lt;Sidebar /&gt;
+            &lt;Outlet /&gt; {/* Child routes render here */}
+        &lt;/div&gt;
+    );
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Common Patterns -->
+            <section class="cheat-section" id="patterns">
+                <h2>🎯 Common Patterns</h2>
+                <p class="section-desc">Frequently used React patterns.</p>
+
+                <div class="code-cards">
+                    <div class="code-card">
+                        <h3>Controlled Input</h3>
+                        <pre><code>function Form() {
+    const [email, setEmail] = useState("");
+    
+    const handleSubmit = (e) =&gt; {
+        e.preventDefault();
+        console.log("Email:", email);
+    };
+    
+    return (
+        &lt;form onSubmit={handleSubmit}&gt;
+            &lt;input
+                type="email"
+                value={email}
+                onChange={(e) =&gt; setEmail(e.target.value)}
+            /&gt;
+            &lt;button type="submit"&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+    );
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Fetching Data</h3>
+                        <pre><code>function UserList() {
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    
+    useEffect(() =&gt; {
+        fetch("/api/users")
+            .then(res =&gt; res.json())
+            .then(data =&gt; {
+                setUsers(data);
+                setLoading(false);
+            })
+            .catch(err =&gt; {
+                setError(err.message);
+                setLoading(false);
+            });
+    }, []);
+    
+    if (loading) return &lt;p&gt;Loading...&lt;/p&gt;;
+    if (error) return &lt;p&gt;Error: {error}&lt;/p&gt;;
+    
+    return &lt;ul&gt;{users.map(...)}&lt;/ul&gt;;
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Lifting State Up</h3>
+                        <pre><code>function Parent() {
+    const [value, setValue] = useState("");
+    
+    return (
+        &lt;&gt;
+            &lt;Input value={value} onChange={setValue} /&gt;
+            &lt;Display value={value} /&gt;
+        &lt;/&gt;
+    );
+}
+
+function Input({ value, onChange }) {
+    return (
+        &lt;input 
+            value={value} 
+            onChange={(e) =&gt; onChange(e.target.value)} 
+        /&gt;
+    );
+}
+
+function Display({ value }) {
+    return &lt;p&gt;You typed: {value}&lt;/p&gt;;
+}</code></pre>
+                    </div>
+
+                    <div class="code-card">
+                        <h3>Compound Components</h3>
+                        <pre><code>// Tabs compound component
+function Tabs({ children, defaultTab }) {
+    const [active, setActive] = useState(defaultTab);
+    return (
+        &lt;TabsContext.Provider value={{ active, setActive }}&gt;
+            &lt;div className="tabs"&gt;{children}&lt;/div&gt;
+        &lt;/TabsContext.Provider&gt;
+    );
+}
+
+Tabs.List = function TabsList({ children }) {
+    return &lt;div className="tabs-list"&gt;{children}&lt;/div&gt;;
+};
+
+Tabs.Tab = function Tab({ id, children }) {
+    const { active, setActive } = useContext(TabsContext);
+    return (
+        &lt;button 
+            className={active === id ? "active" : ""}
+            onClick={() =&gt; setActive(id)}
+        &gt;
+            {children}
+        &lt;/button&gt;
+    );
+};
+
+// Usage
+&lt;Tabs defaultTab="home"&gt;
+    &lt;Tabs.List&gt;
+        &lt;Tabs.Tab id="home"&gt;Home&lt;/Tabs.Tab&gt;
+        &lt;Tabs.Tab id="about"&gt;About&lt;/Tabs.Tab&gt;
+    &lt;/Tabs.List&gt;
+&lt;/Tabs&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="brand-icon">⚡</span>
+                    <span>Jonesys<span class="brand-accent">Code Dev</span></span>
+                </div>
+                <p>Build real skills through hands-on practice</p>
+                <div class="footer-links">
+                    <a href="index.html">React Course</a>
+                    <a href="../typescript/index.html">TypeScript Course</a>
+                    <span>© 2025 Jonesys Code Dev</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
